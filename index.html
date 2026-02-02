@@ -72,7 +72,7 @@
   </div>
 </main>
 
-<!-- MODAL GIỎ HÀNG -->
+<!-- GIỎ HÀNG -->
 <div id="cartModal" class="modal">
   <div class="modal-content">
     <button id="closeCart">&times;</button>
@@ -82,7 +82,7 @@
   </div>
 </div>
 
-<!-- MODAL CHECKOUT -->
+<!-- CHECKOUT -->
 <div id="checkoutModal" class="modal">
   <div class="modal-content">
     <button id="closeCheckout">&times;</button>
@@ -96,6 +96,7 @@
       <input type="hidden" name="_subject" value="Đơn hàng Ebook mới">
       <input type="hidden" name="_captcha" value="false">
 
+      <input type="hidden" name="Mã đơn hàng" id="orderCode">
       <input type="hidden" name="Đơn hàng" id="orderDetail">
       <input type="hidden" name="Tổng tiền" id="orderTotal">
 
@@ -160,24 +161,32 @@ function renderCart(){
 
 document.getElementById("cartBtn").onclick=()=>{
   renderCart();
-  document.getElementById("cartModal").style.display="block";
+  cartModal.style.display="block";
 };
-document.getElementById("closeCart").onclick=()=>cartModal.style.display="none";
-document.getElementById("checkoutBtn").onclick=()=>{
+closeCart.onclick=()=>cartModal.style.display="none";
+checkoutBtn.onclick=()=>{
   cartModal.style.display="none";
   checkoutModal.style.display="block";
 };
-document.getElementById("closeCheckout").onclick=()=>checkoutModal.style.display="none";
+closeCheckout.onclick=()=>checkoutModal.style.display="none";
 
-document.getElementById("orderForm").addEventListener("submit",()=>{
+function generateOrderCode(){
+  const n = new Date();
+  return `TLTT-${n.getFullYear().toString().slice(-2)}${String(n.getMonth()+1).padStart(2,'0')}${String(n.getDate()).padStart(2,'0')}-${n.getTime().toString().slice(-4)}`;
+}
+
+orderForm.addEventListener("submit",()=>{
+  orderCode.value = generateOrderCode();
+
   let c = loadCart(), total=0, detail="";
   c.forEach(ci=>{
     let b=books.find(x=>x.id===ci.id);
     total+=b.price*ci.qty;
     detail+=`${b.title} x ${ci.qty} = ${formatVND(b.price*ci.qty)}\n`;
   });
-  orderDetail.value=detail;
-  orderTotal.value=formatVND(total);
+
+  orderDetail.value = detail;
+  orderTotal.value = formatVND(total);
   localStorage.removeItem(CART_KEY);
 });
 
