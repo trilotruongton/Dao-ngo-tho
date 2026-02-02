@@ -1,39 +1,3 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đọc thử Ebook</title>
-
-<style>
-body{margin:0;font-family:Segoe UI,Roboto,Arial;background:#f5f7fb}
-header{background:#0f1724;color:#fff;padding:14px 20px}
-header a{color:#fff;text-decoration:none;font-weight:600}
-main{max-width:900px;margin:24px auto;padding:0 16px}
-.book{background:#fff;padding:20px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
-.book img{max-width:200px;border-radius:8px}
-h1{margin-top:0}
-.btn{display:inline-block;margin-top:14px;padding:10px 14px;background:#ff6b00;color:#fff;text-decoration:none;border-radius:6px;font-weight:600}
-iframe{width:100%;height:600px;border:none;margin-top:14px}
-</style>
-</head>
-
-<body>
-
-<header>
-<a href="index.html">← Quay lại cửa hàng</a>
-</header>
-
-<main>
-<div class="book">
-<img id="img">
-<h1 id="title"></h1>
-<p><strong>Giá:</strong> <span id="price"></span></p>
-<iframe id="pdf"></iframe>
-<a class="btn" target="_blank" id="buy">💬 Mua qua Messenger</a>
-</div>
-</main>
-
 <script>
 const books={
 "tuyet-mat-nhan-tinh":{
@@ -41,55 +5,60 @@ title:"Tuyệt Mật Nhân Tính",
 price:"0đ (Sách tặng)",
 img:"images/tuyet-mat-nhan-tinh.jpg",
 pdf:"previews/tuyet-mat-nhan-tinh-doc-thu.pdf",
-msg:"Tôi muốn nhận ebook Tuyệt Mật Nhân Tính"
+msg:"Mình muốn nhận ebook Tuyệt Mật Nhân Tính"
 },
 "nhan-tinh-den-trang":{
 title:"Nhân Tính Đen Trắng",
 price:"90.000đ",
 img:"images/nhan-tinh-den-trang.jpg",
 pdf:"previews/nhan-tinh-den-trang-doc-thu.pdf",
-msg:"Tôi muốn mua ebook Nhân Tính Đen Trắng"
+msg:"Cuốn Nhân Tính Đen Trắng này đọc rất thẳng. Mình muốn mua ebook."
 },
 "tu-duy-sau-sac":{
 title:"Tư Duy Sâu Sắc",
 price:"150.000đ",
 img:"images/tu-duy-sau-sac.jpg",
 pdf:"previews/tu-duy-sau-sac-doc-thu.pdf",
-msg:"Tôi muốn mua ebook Tư Duy Sâu Sắc"
+msg:"Mình muốn mua ebook Tư Duy Sâu Sắc."
 },
 "thien-co-38-cuc":{
 title:"Thiên Cơ 38 Cục",
 price:"120.000đ",
 img:"images/thien-co-38-cuc.jpg",
 pdf:"previews/thien-co-38-cuc-doc-thu.pdf",
-msg:"Tôi muốn mua ebook Thiên Cơ 38 Cục"
+msg:"Mình muốn mua ebook Thiên Cơ 38 Cục."
 },
 "logic-nguoi-ngheo":{
 title:"Logic Người Nghèo",
 price:"100.000đ",
 img:"images/logic-nguoi-ngheo.jpg",
 pdf:"previews/logic-nguoi-ngheo-doc-thu.pdf",
-msg:"Tôi muốn mua ebook Logic Người Nghèo"
+msg:"Mình muốn mua ebook Logic Người Nghèo."
 },
 "kiem-dai":{
 title:"Kiếm Đại",
 price:"90.000đ",
 img:"images/kiem-dai.jpg",
 pdf:"previews/kiem-dai-doc-thu.pdf",
-msg:"Tôi muốn mua ebook Kiếm Đại"
+msg:"Mình muốn mua ebook Kiếm Đại."
 }
 };
 
-const q=new URLSearchParams(location.search).get("sach");
-const b=books[q];
+const q = new URLSearchParams(location.search).get("sach");
+const b = books[q];
+
 if(b){
-title.textContent=b.title;
-price.textContent=b.price;
-img.src=b.img;
-pdf.src=b.pdf;
-buy.href="https://m.me/801523696387597?text="+encodeURIComponent(b.msg);
+document.getElementById("title").textContent = b.title;
+document.getElementById("price").textContent = b.price;
+document.getElementById("img").src = b.img;
+document.getElementById("pdf").src = b.pdf;
+
+// 👉 CHAT CHỐT ĐƠN TỰ ĐỘNG
+document.getElementById("buy").href =
+"https://m.me/801523696387597?text=" + encodeURIComponent(
+"📘 " + b.title + "\n" +
+"💰 Giá: " + b.price + "\n\n" +
+"Mình đã đọc thử và muốn lấy bản đầy đủ. Gửi ebook giúp mình nhé."
+);
 }
 </script>
-
-</body>
-</html>
