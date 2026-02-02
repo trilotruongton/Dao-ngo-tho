@@ -8,50 +8,86 @@
 <style>
 body{margin:0;font-family:Segoe UI,Roboto,Arial;background:#f5f7fb}
 header{background:#0f1724;color:#fff;padding:14px 20px}
+header a{color:#fff;text-decoration:none;font-weight:600}
 main{max-width:900px;margin:24px auto;padding:0 16px}
-.book{background:#fff;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:20px}
-.book img{max-width:200px;border-radius:6px}
-h2{margin-top:0}
-.price{color:#ff6b00;font-weight:700}
-.actions a{display:inline-block;margin:10px 10px 0 0;padding:8px 14px;border-radius:6px;text-decoration:none;font-weight:600}
-.back{background:#e6e9ee;color:#222}
-.buy{background:#ff6b00;color:#fff}
-iframe{width:100%;height:70vh;border:none;margin-top:16px}
+.book{background:#fff;padding:20px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+.book img{max-width:200px;border-radius:8px}
+h1{margin-top:0}
+.btn{display:inline-block;margin-top:14px;padding:10px 14px;background:#ff6b00;color:#fff;text-decoration:none;border-radius:6px;font-weight:600}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Đọc thử Ebook</h1>
+<a href="index.html">← Quay lại cửa hàng</a>
 </header>
 
 <main>
-  <div class="book" id="book"></div>
+<div class="book">
+<img id="img">
+<h1 id="title"></h1>
+<p><strong>Giá:</strong> <span id="price"></span></p>
+<iframe id="pdf" style="width:100%;height:600px;border:none"></iframe>
+<a class="btn" target="_blank" id="buy">💬 Mua qua Messenger</a>
+</div>
 </main>
 
 <script>
 const books={
-"tuyet-mat-nhan-tinh":{title:"Tuyệt Mật Nhân Tính",price:"0đ (Sách tặng)",img:"images/tuyet-mat-nhan-tinh.jpg",pdf:"previews/tuyet-mat-nhan-tinh-doc-thu.pdf"},
-"nhan-tinh-den-trang":{title:"Nhân Tính Đen Trắng",price:"90.000đ",img:"images/nhan-tinh-den-trang.jpg",pdf:"previews/nhan-tinh-den-trang-doc-thu.pdf"},
-"tu-duy-sau-sac":{title:"Tư Duy Sâu Sắc",price:"150.000đ",img:"images/tu-duy-sau-sac.jpg",pdf:"previews/tu-duy-sau-sac-doc-thu.pdf"},
-"thien-co-38-cuc":{title:"Thiên Cơ 38 Cục",price:"120.000đ",img:"images/thien-co-38-cuc.jpg",pdf:"previews/thien-co-38-cuc-doc-thu.pdf"},
-"logic-nguoi-ngheo":{title:"Logic Người Nghèo",price:"100.000đ",img:"images/logic-nguoi-ngheo.jpg",pdf:"previews/logic-nguoi-ngheo-doc-thu.pdf"}
+"tuyet-mat-nhan-tinh":{
+title:"Tuyệt Mật Nhân Tính",
+price:"0đ (Sách tặng)",
+img:"images/tuyet-mat-nhan-tinh.jpg",
+pdf:"previews/tuyet-mat-nhan-tinh-doc-thu.pdf",
+msg:"Tôi muốn nhận ebook Tuyệt Mật Nhân Tính"
+},
+"nhan-tinh-den-trang":{
+title:"Nhân Tính Đen Trắng",
+price:"90.000đ",
+img:"images/nhan-tinh-den-trang.jpg",
+pdf:"previews/nhan-tinh-den-trang-doc-thu.pdf",
+msg:"Tôi muốn mua ebook Nhân Tính Đen Trắng"
+},
+"tu-duy-sau-sac":{
+title:"Tư Duy Sâu Sắc",
+price:"150.000đ",
+img:"images/tu-duy-sau-sac.jpg",
+pdf:"previews/tu-duy-sau-sac-doc-thu.pdf",
+msg:"Tôi muốn mua ebook Tư Duy Sâu Sắc"
+},
+"thien-co-38-cuc":{
+title:"Thiên Cơ 38 Cục",
+price:"120.000đ",
+img:"images/thien-co-38-cuc.jpg",
+pdf:"previews/thien-co-38-cuc-doc-thu.pdf",
+msg:"Tôi muốn mua ebook Thiên Cơ 38 Cục"
+},
+"logic-nguoi-ngheo":{
+title:"Logic Người Nghèo",
+price:"100.000đ",
+img:"images/logic-nguoi-ngheo.jpg",
+pdf:"previews/logic-nguoi-ngheo-doc-thu.pdf",
+msg:"Tôi muốn mua ebook Logic Người Nghèo"
+},
+"kiem-dai":{
+title:"Kiếm Đại",
+price:"90.000đ",
+img:"images/kiem-dai.jpg",
+pdf:"previews/kiem-dai-doc-thu.pdf",
+msg:"Tôi muốn mua ebook Kiếm Đại"
+}
 };
 
-const key=new URLSearchParams(location.search).get("sach");
-const b=books[key];
-
-document.getElementById("book").innerHTML=`
-<img src="${b.img}">
-<h2>${b.title}</h2>
-<p class="price">Giá: ${b.price}</p>
-<div class="actions">
-  <a class="back" href="index.html">⬅ Quay lại cửa hàng</a>
-  <a class="buy" href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20${encodeURIComponent(b.title)}" target="_blank">💬 Mua qua Messenger</a>
-</div>
-<iframe src="${b.pdf}"></iframe>
-`;
+const q=new URLSearchParams(location.search).get("sach");
+const b=books[q];
+if(b){
+title.textContent=b.title;
+price.textContent=b.price;
+img.src=b.img;
+pdf.src=b.pdf;
+buy.href="https://m.me/801523696387597?text="+encodeURIComponent(b.msg);
+}
 </script>
 
 </body>
