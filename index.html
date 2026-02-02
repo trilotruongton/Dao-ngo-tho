@@ -3,199 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trí Lộ Trường Tồn - Ebook</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  <title>Trí Lộ Trường Tồn — Ebook</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Segoe UI,Roboto,Arial;
+      background:#f5f7fb;
+      color:#222;
+    }
+    header{
+      background:#0f1724;
+      color:#fff;
+      padding:16px 20px;
+    }
+    header h1{margin:0;font-size:18px}
+
+    main{max-width:1100px;margin:24px auto;padding:0 16px}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(0,0,0,.06);
+      display:flex;
+      flex-direction:column;
+    }
+
+    .thumb{
+      padding-bottom:140%;
+      background-size:cover;
+      background-position:center;
+    }
+
+    .info{
+      padding:14px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+
+    .title{font-size:16px;font-weight:700;margin:0}
+    .author{font-size:13px;color:#666}
+
+    .price{
+      font-size:14px;
+    }
+    .price del{color:#c0392b;font-weight:600}
+    .price strong{color:#ff6b00}
+
+    .desc{font-size:13px;line-height:1.45;flex:1}
+
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .btn{
+      flex:1;
+      text-align:center;
+      padding:8px 10px;
+      border-radius:6px;
+      font-weight:600;
+      text-decoration:none;
+    }
+
+    .btn.read{background:#e6e9ee;color:#222}
+    .btn.buy{background:#ff6b00;color:#fff}
+
+    footer{
+      text-align:center;
+      padding:24px;
+      font-size:13px;
+      color:#666;
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
-  <div class="brand">
-    <img src="images/favicon.png" class="qr">
-    <h1>Trí Lộ Trường Tồn</h1>
-  </div>
-  <button id="cartBtn">🛒 Giỏ hàng (<span id="cartCount">0</span>)</button>
+  <h1>Trí Lộ Trường Tồn — Cửa hàng Ebook</h1>
 </header>
 
 <main>
-  <h2>Danh sách Ebook</h2>
+  <section class="grid">
 
-  <div class="book-list">
+    <!-- TUYỆT MẬT NHÂN TÍNH -->
+    <article class="card">
+      <div class="thumb" style="background-image:url('images/tuyet-mat-nhan-tinh.jpg')"></div>
+      <div class="info">
+        <h2 class="title">Tuyệt Mật Nhân Tính</h2>
+        <div class="author">Xuyên Thấu Nhân Tính</div>
+        <div class="price">
+          <del>50.000đ</del> → <strong>0đ (Sách tặng)</strong>
+        </div>
+        <p class="desc">
+          Khám phá tận gốc bản chất nhân tính và những quy luật ngầm chi phối hành vi con người.
+        </p>
+        <div class="actions">
+          <a class="btn read" href="previews/tuyet-mat-nhan-tinh-doc-thu.pdf" target="_blank">
+            📖 Đọc thử
+          </a>
+          <a class="btn buy"
+             href="https://m.me/801523696387597?text=Tôi%20muốn%20nhận%20ebook%20Tuyệt%20Mật%20Nhân%20Tính"
+             target="_blank">
+            💬 Nhận sách
+          </a>
+        </div>
+      </div>
+    </article>
 
-    <div class="book">
-      <img src="images/tuyet-mat-nhan-tinh.jpg">
-      <h4>Tuyệt Mật Nhân Tính</h4>
-      <p><del>50.000đ</del> ➝ <strong>0đ, sách tặng</strong></p>
-      <a href="previews/tuyet-mat-nhan-tinh-doc-thu.pdf" target="_blank">📖 Đọc thử</a><br>
-      <button onclick="downloadFree()">Tải miễn phí</button>
-    </div>
+    <!-- NHÂN TÍNH ĐEN TRẮNG -->
+    <article class="card">
+      <div class="thumb" style="background-image:url('images/nhan-tinh-den-trang.jpg')"></div>
+      <div class="info">
+        <h2 class="title">Nhân Tính Đen Trắng</h2>
+        <div class="author">Xuyên Thấu Nhân Tính</div>
+        <div class="price">
+          <del>120.000đ</del> → <strong>90.000đ</strong>
+        </div>
+        <p class="desc">
+          Phân tích mặt sáng – tối của con người, giúp bạn nhìn thấu và làm chủ các mối quan hệ.
+        </p>
+        <div class="actions">
+          <a class="btn read" href="previews/nhan-tinh-den-trang-doc-thu.pdf" target="_blank">
+            📖 Đọc thử
+          </a>
+          <a class="btn buy"
+             href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Nhân%20Tính%20Đen%20Trắng"
+             target="_blank">
+            💬 Mua qua Messenger
+          </a>
+        </div>
+      </div>
+    </article>
 
-    <div class="book">
-      <img src="images/nhan-tinh-den-trang.jpg">
-      <h4>Nhân Tính Đen Trắng</h4>
-      <p><del>120.000đ</del> ➝ <strong>90.000đ</strong></p>
-      <a href="previews/nhan-tinh-den-trang-doc-thu.pdf" target="_blank">📖 Đọc thử</a><br>
-      <button onclick="addToCart(2)">Thêm vào giỏ</button>
-    </div>
+    <!-- TƯ DUY SÂU SẮC -->
+    <article class="card">
+      <div class="thumb" style="background-image:url('images/tu-duy-sau-sac.jpg')"></div>
+      <div class="info">
+        <h2 class="title">Tư Duy Sâu Sắc</h2>
+        <div class="author">Xuyên Thấu Nhân Tính</div>
+        <div class="price">
+          <del>200.000đ</del> → <strong>150.000đ</strong>
+        </div>
+        <p class="desc">
+          Rèn luyện tư duy chiều sâu, thoát khỏi suy nghĩ bề mặt và cảm tính.
+        </p>
+        <div class="actions">
+          <a class="btn read" href="previews/tu-duy-sau-sac-doc-thu.pdf" target="_blank">
+            📖 Đọc thử
+          </a>
+          <a class="btn buy"
+             href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Tư%20Duy%20Sâu%20Sắc"
+             target="_blank">
+            💬 Mua qua Messenger
+          </a>
+        </div>
+      </div>
+    </article>
 
-    <div class="book">
-      <img src="images/tu-duy-sau-sac.jpg">
-      <h4>Tư Duy Sâu Sắc</h4>
-      <p><del>200.000đ</del> ➝ <strong>150.000đ</strong></p>
-      <a href="previews/tu-duy-sau-sac-doc-thu.pdf" target="_blank">📖 Đọc thử</a><br>
-      <button onclick="addToCart(3)">Thêm vào giỏ</button>
-    </div>
+    <!-- THIÊN CƠ 38 CỤC -->
+    <article class="card">
+      <div class="thumb" style="background-image:url('images/thien-co-38-cuc.jpg')"></div>
+      <div class="info">
+        <h2 class="title">Thiên Cơ 38 Cục</h2>
+        <div class="author">Xuyên Thấu Nhân Tính</div>
+        <div class="price">
+          <del>170.000đ</del> → <strong>120.000đ</strong>
+        </div>
+        <p class="desc">
+          Tư duy mưu lược – chiến lược – đọc thế cuộc trong đời sống và kinh doanh.
+        </p>
+        <div class="actions">
+          <a class="btn read" href="previews/thien-co-38-cuc-doc-thu.pdf" target="_blank">
+            📖 Đọc thử
+          </a>
+          <a class="btn buy"
+             href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Thiên%20Cơ%2038%20Cục"
+             target="_blank">
+            💬 Mua qua Messenger
+          </a>
+        </div>
+      </div>
+    </article>
 
-    <div class="book">
-      <img src="images/thien-co-38-cuc.jpg">
-      <h4>Thiên Cơ 38 Cục</h4>
-      <p><del>170.000đ</del> ➝ <strong>120.000đ</strong></p>
-      <a href="previews/thien-co-38-cuc-doc-thu.pdf" target="_blank">📖 Đọc thử</a><br>
-      <button onclick="addToCart(4)">Thêm vào giỏ</button>
-    </div>
-
-    <div class="book">
-      <img src="images/kiem-dai.jpg">
-      <h4>Kiếm Đại</h4>
-      <p><del>120.000đ</del> ➝ <strong>90.000đ</strong></p>
-      <button onclick="addToCart(5)">Thêm vào giỏ</button>
-    </div>
-
-    <div class="book">
-      <img src="images/logic-nguoi-ngheo.jpg">
-      <h4>Logic Người Nghèo</h4>
-      <p><del>170.000đ</del> ➝ <strong>100.000đ</strong></p>
-      <a href="previews/logic-nguoi-ngheo-doc-thu.pdf" target="_blank">📖 Đọc thử</a><br>
-      <button onclick="addToCart(6)">Thêm vào giỏ</button>
-    </div>
-
-  </div>
+  </section>
 </main>
 
-<!-- GIỎ HÀNG -->
-<div id="cartModal" class="modal">
-  <div class="modal-content">
-    <button id="closeCart">&times;</button>
-    <h3>Giỏ hàng</h3>
-    <div id="cartItems"></div>
-    <button id="checkoutBtn">Đặt hàng</button>
-  </div>
-</div>
-
-<!-- CHECKOUT -->
-<div id="checkoutModal" class="modal">
-  <div class="modal-content">
-    <button id="closeCheckout">&times;</button>
-    <h3>Thông tin đặt hàng</h3>
-
-    <form id="orderForm"
-      action="https://formsubmit.co/vang11112006@gmail.com"
-      method="POST">
-
-      <input type="hidden" name="_next" value="thankyou.html">
-      <input type="hidden" name="_subject" value="Đơn hàng Ebook mới">
-      <input type="hidden" name="_captcha" value="false">
-
-      <input type="hidden" name="Mã đơn hàng" id="orderCode">
-      <input type="hidden" name="Đơn hàng" id="orderDetail">
-      <input type="hidden" name="Tổng tiền" id="orderTotal">
-
-      <input type="text" name="Họ tên" placeholder="Họ và tên" required>
-      <input type="email" name="Email" placeholder="Email" required>
-      <input type="text" name="SĐT" placeholder="Số điện thoại">
-      <textarea name="Ghi chú" placeholder="Ghi chú thêm"></textarea>
-
-      <button type="submit">Gửi đơn</button>
-    </form>
-
-  </div>
-</div>
-
-<script>
-const books = [
-  { id: 2, title: "Nhân Tính Đen Trắng", price: 90000 },
-  { id: 3, title: "Tư Duy Sâu Sắc", price: 150000 },
-  { id: 4, title: "Thiên Cơ 38 Cục", price: 120000 },
-  { id: 5, title: "Kiếm Đại", price: 90000 },
-  { id: 6, title: "Logic Người Nghèo", price: 100000 }
-];
-
-const CART_KEY = "ebook_cart";
-const cartCount = document.getElementById("cartCount");
-const cartItems = document.getElementById("cartItems");
-
-function formatVND(x){
-  return x.toLocaleString("vi-VN")+"₫";
-}
-
-function loadCart(){
-  return JSON.parse(localStorage.getItem(CART_KEY)||"[]");
-}
-
-function saveCart(c){
-  localStorage.setItem(CART_KEY,JSON.stringify(c));
-}
-
-function updateCartCount(){
-  cartCount.textContent = loadCart().reduce((s,i)=>s+i.qty,0);
-}
-
-function addToCart(id){
-  let c = loadCart();
-  let i = c.find(x=>x.id===id);
-  i ? i.qty++ : c.push({id,qty:1});
-  saveCart(c);
-  updateCartCount();
-  alert("Đã thêm vào giỏ hàng");
-}
-
-function renderCart(){
-  let c = loadCart(), total=0;
-  cartItems.innerHTML = c.map(ci=>{
-    let b = books.find(x=>x.id===ci.id);
-    let sub = b.price*ci.qty;
-    total+=sub;
-    return `<p>${b.title} x ${ci.qty} = ${formatVND(sub)}</p>`;
-  }).join("") + `<hr><strong>Tổng: ${formatVND(total)}</strong>`;
-}
-
-document.getElementById("cartBtn").onclick=()=>{
-  renderCart();
-  cartModal.style.display="block";
-};
-closeCart.onclick=()=>cartModal.style.display="none";
-checkoutBtn.onclick=()=>{
-  cartModal.style.display="none";
-  checkoutModal.style.display="block";
-};
-closeCheckout.onclick=()=>checkoutModal.style.display="none";
-
-function generateOrderCode(){
-  const n = new Date();
-  return `TLTT-${n.getFullYear().toString().slice(-2)}${String(n.getMonth()+1).padStart(2,'0')}${String(n.getDate()).padStart(2,'0')}-${n.getTime().toString().slice(-4)}`;
-}
-
-orderForm.addEventListener("submit",()=>{
-  orderCode.value = generateOrderCode();
-
-  let c = loadCart(), total=0, detail="";
-  c.forEach(ci=>{
-    let b=books.find(x=>x.id===ci.id);
-    total+=b.price*ci.qty;
-    detail+=`${b.title} x ${ci.qty} = ${formatVND(b.price*ci.qty)}\n`;
-  });
-
-  orderDetail.value = detail;
-  orderTotal.value = formatVND(total);
-  localStorage.removeItem(CART_KEY);
-});
-
-updateCartCount();
-
-function downloadFree(){
-  window.open("previews/tuyet-mat-nhan-tinh-doc-thu.pdf","_blank");
-}
-</script>
+<footer>
+  © 2025 Trí Lộ Trường Tồn — Mua ebook qua Messenger
+</footer>
 
 </body>
 </html>
