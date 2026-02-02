@@ -6,31 +6,106 @@
 <title>Trí Lộ Trường Tồn — Ebook</title>
 
 <style>
-body{margin:0;font-family:Segoe UI,Roboto,Arial;background:#f5f7fb;color:#222}
-header{background:#0f1724;color:#fff;padding:16px 20px}
-header h1{margin:0;font-size:18px}
-main{max-width:1100px;margin:24px auto;padding:0 16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
-.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.06);display:flex;flex-direction:column}
-.thumb{padding-bottom:140%;background-size:cover;background-position:center}
-.info{padding:14px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
-.title{font-size:16px;font-weight:700;margin:0}
-.author{font-size:13px;color:#666}
-.price del{color:#c0392b;font-weight:600}
-.price strong{color:#ff6b00}
-.desc{font-size:13px;line-height:1.45;flex:1}
-.actions{display:flex;gap:10px;margin-top:10px}
-.btn{flex:1;text-align:center;padding:8px;border-radius:6px;font-weight:600;text-decoration:none}
-.btn.read{background:#e6e9ee;color:#222}
-.btn.buy{background:#ff6b00;color:#fff}
-footer{text-align:center;padding:24px;font-size:13px;color:#666}
+body{
+  margin:0;
+  font-family:Segoe UI,Roboto,Arial;
+  background:#f5f7fb;
+  color:#222
+}
+header{
+  background:#0f1724;
+  color:#fff;
+  padding:16px 20px
+}
+header h1{
+  margin:0;
+  font-size:18px
+}
+main{
+  max-width:1100px;
+  margin:24px auto;
+  padding:0 16px
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:18px
+}
+.card{
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  display:flex;
+  flex-direction:column
+}
+.thumb{
+  padding-bottom:140%;
+  background-size:cover;
+  background-position:center
+}
+.info{
+  padding:14px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1
+}
+.title{
+  font-size:16px;
+  font-weight:700;
+  margin:0
+}
+.author{
+  font-size:13px;
+  color:#666
+}
+.price del{
+  color:#c0392b;
+  font-weight:600
+}
+.price strong{
+  color:#ff6b00
+}
+.desc{
+  font-size:13px;
+  line-height:1.45;
+  flex:1
+}
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:10px
+}
+.btn{
+  flex:1;
+  text-align:center;
+  padding:8px;
+  border-radius:6px;
+  font-weight:600;
+  text-decoration:none
+}
+.btn.read{
+  background:#e6e9ee;
+  color:#222
+}
+.btn.buy{
+  background:#ff6b00;
+  color:#fff
+}
+footer{
+  text-align:center;
+  padding:24px;
+  font-size:13px;
+  color:#666
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>Trí Lộ Trường Tồn — Cửa hàng Ebook</h1>
+  <h1>Trí Lộ Trường Tồn — Cửa hàng Ebook</h1>
 </header>
 
 <main>
@@ -38,98 +113,110 @@ footer{text-align:center;padding:24px;font-size:13px;color:#666}
 
 <!-- TUYỆT MẬT NHÂN TÍNH -->
 <article class="card">
-<div class="thumb" style="background-image:url('images/tuyet-mat-nhan-tinh.jpg')"></div>
-<div class="info">
-<h2 class="title">Tuyệt Mật Nhân Tính</h2>
-<div class="author">Xuyên Thấu Nhân Tính</div>
-<div class="price"><del>50.000đ</del> → <strong>0đ (Sách tặng)</strong></div>
-<p class="desc">Khám phá tận gốc bản chất nhân tính.</p>
-<div class="actions">
-<a class="btn read" href="doc-thu.html?sach=tuyet-mat-nhan-tinh">📖 Đọc thử</a>
-<a class="btn buy" target="_blank"
-href="https://m.me/801523696387597?text=Tôi%20muốn%20nhận%20ebook%20Tuyệt%20Mật%20Nhân%20Tính">💬 Nhận sách</a>
-</div>
-</div>
+  <div class="thumb" style="background-image:url('images/tuyet-mat-nhan-tinh.jpg')"></div>
+  <div class="info">
+    <h2 class="title">Tuyệt Mật Nhân Tính</h2>
+    <div class="author">Xuyên Thấu Nhân Tính</div>
+    <div class="price"><del>50.000đ</del> → <strong>0đ (Sách tặng)</strong></div>
+    <p class="desc">Khám phá tận gốc bản chất nhân tính và quy luật ngầm chi phối con người.</p>
+    <div class="actions">
+      <a class="btn read" href="doc-thu.html?sach=tuyet-mat-nhan-tinh">📖 Đọc thử</a>
+      <a class="btn buy" target="_blank"
+         href="https://m.me/801523696387597?text=Tôi%20muốn%20nhận%20ebook%20Tuyệt%20Mật%20Nhân%20Tính">
+         💬 Nhận sách
+      </a>
+    </div>
+  </div>
 </article>
 
 <!-- NHÂN TÍNH ĐEN TRẮNG -->
 <article class="card">
-<div class="thumb" style="background-image:url('images/nhan-tinh-den-trang.jpg')"></div>
-<div class="info">
-<h2 class="title">Nhân Tính Đen Trắng</h2>
-<div class="author">Xuyên Thấu Nhân Tính</div>
-<div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
-<p class="desc">Nhìn thấu mặt sáng – tối của con người.</p>
-<div class="actions">
-<a class="btn read" href="doc-thu.html?sach=nhan-tinh-den-trang">📖 Đọc thử</a>
-<a class="btn buy" target="_blank"
-href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Nhân%20Tính%20Đen%20Trắng">💬 Mua</a>
-</div>
-</div>
+  <div class="thumb" style="background-image:url('images/nhan-tinh-den-trang.jpg')"></div>
+  <div class="info">
+    <h2 class="title">Nhân Tính Đen Trắng</h2>
+    <div class="author">Xuyên Thấu Nhân Tính</div>
+    <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
+    <p class="desc">Nhìn thấu mặt sáng – tối của con người trong các mối quan hệ.</p>
+    <div class="actions">
+      <a class="btn read" href="doc-thu.html?sach=nhan-tinh-den-trang">📖 Đọc thử</a>
+      <a class="btn buy" target="_blank"
+         href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Nhân%20Tính%20Đen%20Trắng">
+         💬 Mua
+      </a>
+    </div>
+  </div>
 </article>
 
 <!-- TƯ DUY SÂU SẮC -->
 <article class="card">
-<div class="thumb" style="background-image:url('images/tu-duy-sau-sac.jpg')"></div>
-<div class="info">
-<h2 class="title">Tư Duy Sâu Sắc</h2>
-<div class="author">Xuyên Thấu Nhân Tính</div>
-<div class="price"><del>200.000đ</del> → <strong>150.000đ</strong></div>
-<p class="desc">Rèn luyện tư duy chiều sâu.</p>
-<div class="actions">
-<a class="btn read" href="doc-thu.html?sach=tu-duy-sau-sac">📖 Đọc thử</a>
-<a class="btn buy" target="_blank"
-href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Tư%20Duy%20Sâu%20Sắc">💬 Mua</a>
-</div>
-</div>
+  <div class="thumb" style="background-image:url('images/tu-duy-sau-sac.jpg')"></div>
+  <div class="info">
+    <h2 class="title">Tư Duy Sâu Sắc</h2>
+    <div class="author">Xuyên Thấu Nhân Tính</div>
+    <div class="price"><del>200.000đ</del> → <strong>150.000đ</strong></div>
+    <p class="desc">Rèn luyện tư duy chiều sâu, thoát khỏi suy nghĩ bề mặt.</p>
+    <div class="actions">
+      <a class="btn read" href="doc-thu.html?sach=tu-duy-sau-sac">📖 Đọc thử</a>
+      <a class="btn buy" target="_blank"
+         href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Tư%20Duy%20Sâu%20Sắc">
+         💬 Mua
+      </a>
+    </div>
+  </div>
 </article>
 
 <!-- THIÊN CƠ 38 CỤC -->
 <article class="card">
-<div class="thumb" style="background-image:url('images/thien-co-38-cuc.jpg')"></div>
-<div class="info">
-<h2 class="title">Thiên Cơ 38 Cục</h2>
-<div class="author">Xuyên Thấu Nhân Tính</div>
-<div class="price"><del>170.000đ</del> → <strong>120.000đ</strong></div>
-<p class="desc">Tư duy mưu lược – đọc thế cuộc.</p>
-<div class="actions">
-<a class="btn read" href="doc-thu.html?sach=thien-co-38-cuc">📖 Đọc thử</a>
-<a class="btn buy" target="_blank"
-href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Thiên%20Cơ%2038%20Cục">💬 Mua</a>
-</div>
-</div>
+  <div class="thumb" style="background-image:url('images/thien-co-38-cuc.jpg')"></div>
+  <div class="info">
+    <h2 class="title">Thiên Cơ 38 Cục</h2>
+    <div class="author">Xuyên Thấu Nhân Tính</div>
+    <div class="price"><del>170.000đ</del> → <strong>120.000đ</strong></div>
+    <p class="desc">Tư duy mưu lược – đọc thế cuộc đời và kinh doanh.</p>
+    <div class="actions">
+      <a class="btn read" href="doc-thu.html?sach=thien-co-38-cuc">📖 Đọc thử</a>
+      <a class="btn buy" target="_blank"
+         href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Thiên%20Cơ%2038%20Cục">
+         💬 Mua
+      </a>
+    </div>
+  </div>
 </article>
 
 <!-- LOGIC NGƯỜI NGHÈO -->
 <article class="card">
-<div class="thumb" style="background-image:url('images/logic-nguoi-ngheo.jpg')"></div>
-<div class="info">
-<h2 class="title">Logic Người Nghèo</h2>
-<div class="author">Xuyên Thấu Nhân Tính</div>
-<div class="price"><del>170.000đ</del> → <strong>100.000đ</strong></div>
-<p class="desc">Nhận diện bẫy tư duy nghèo.</p>
-<div class="actions">
-<a class="btn read" href="doc-thu.html?sach=logic-nguoi-ngheo">📖 Đọc thử</a>
-<a class="btn buy" target="_blank"
-href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Logic%20Người%20Nghèo">💬 Mua</a>
-</div>
-</div>
+  <div class="thumb" style="background-image:url('images/logic-nguoi-ngheo.jpg')"></div>
+  <div class="info">
+    <h2 class="title">Logic Người Nghèo</h2>
+    <div class="author">Xuyên Thấu Nhân Tính</div>
+    <div class="price"><del>170.000đ</del> → <strong>100.000đ</strong></div>
+    <p class="desc">Nhận diện những bẫy tư duy khiến con người mãi nghèo.</p>
+    <div class="actions">
+      <a class="btn read" href="doc-thu.html?sach=logic-nguoi-ngheo">📖 Đọc thử</a>
+      <a class="btn buy" target="_blank"
+         href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Logic%20Người%20Nghèo">
+         💬 Mua
+      </a>
+    </div>
+  </div>
 </article>
 
 <!-- KIẾM ĐẠI -->
 <article class="card">
-<div class="thumb" style="background-image:url('images/kiem-dai.jpg')"></div>
-<div class="info">
-<h2 class="title">Kiếm Đại</h2>
-<div class="author">Xuyên Thấu Nhân Tính</div>
-<div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
-<p class="desc">Góc nhìn sắc bén về đời sống.</p>
-<div class="actions">
-<a class="btn read" href="doc-thu.html?sach=kiem-dai">📖 Đọc thử</a>
-<a class="btn buy" target="_blank"
-href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Kiếm%20Đại">💬 Mua</a>
-</div>
-</div>
+  <div class="thumb" style="background-image:url('images/kiem-dai.jpg')"></div>
+  <div class="info">
+    <h2 class="title">Kiếm Đại</h2>
+    <div class="author">Xuyên Thấu Nhân Tính</div>
+    <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
+    <p class="desc">Góc nhìn sắc bén và hệ tư tưởng phản tỉnh đời sống.</p>
+    <div class="actions">
+      <a class="btn read" href="doc-thu.html?sach=kiem-dai">📖 Đọc thử</a>
+      <a class="btn buy" target="_blank"
+         href="https://m.me/801523696387597?text=Tôi%20muốn%20mua%20ebook%20Kiếm%20Đại">
+         💬 Mua
+      </a>
+    </div>
+  </div>
 </article>
 
 </section>
