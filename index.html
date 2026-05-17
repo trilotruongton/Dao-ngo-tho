@@ -27,17 +27,24 @@
         .btn.buy { background: #ff3e3e; color: #fff; }
         .btn.buy:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 62, 62, 0.5); }
         
-        /* PHẦN GỢI Ý ĐỘC GIẢ & SĐT TRỢ GIÚP */
         .support-box { background: #161c26; border-left: 4px solid #ff3e3e; padding: 20px; border-radius: 8px; margin-top: 50px; border-top: 1px solid #2a3341; border-right: 1px solid #2a3341; border-bottom: 1px solid #2a3341; }
         .support-box h3 { margin: 0 0 10px 0; color: #fff; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
         .support-box p { margin: 5px 0; font-size: 14px; color: #b0b8d1; }
         .support-box a { color: #00ff88; text-decoration: none; font-weight: bold; }
         .support-box a:hover { text-decoration: underline; }
 
+        /* POPUP CHUNG */
         #orderPopup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .popup-content { background: #1c2533; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #ff3e3e; text-align: center; }
+        .popup-content { background: #1c2533; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #ff3e3e; text-align: center; box-sizing: border-box; }
         .popup-content input { width: 100%; padding: 14px; margin: 12px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; }
-        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 14px; }
+        
+        /* KHUNG VIETQR */
+        .qr-container { display: none; text-align: center; margin-top: 15px; background: #fff; padding: 15px; border-radius: 10px; color: #333; }
+        .qr-container img { max-width: 220px; width: 100%; height: auto; display: block; margin: 0 auto 10px; }
+        .qr-container p { margin: 4px 0; font-size: 13px; font-weight: 600; color: #222; }
+        .qr-container .notice { color: #ff3e3e; font-size: 12px; margin-top: 8px; font-style: italic; }
+
         footer { text-align: center; padding: 50px 20px; font-size: 14px; color: #666; border-top: 1px solid #161c26; margin-top: 30px; }
     </style>
 </head>
@@ -127,38 +134,94 @@
 
     <section class="support-box">
         <h3>💡 Gợi ý dành cho Độc giả</h3>
-        <p>• Sau khi điền thông tin và bấm <strong>"Xác Nhận Đặt Mua"</strong>, hệ thống sẽ tự động soạn sẵn thông tin và chuyển bạn sang ô chat Messenger. Bạn chỉ cần bấm nút <strong>GỬI</strong> để hoàn tất.</p>
-        <p>• Nếu gặp bất kỳ vấn đề gì (không nhận được phản hồi, điền nhầm thông tin đơn hàng), vui lòng liên hệ trực tiếp qua Hotline hoặc Zalo: <a href="tel:0397885118"><strong>0397885118</strong></a> để được xử lý ngay lập tức.</p>
+        <p>• Sau khi điền thông tin và bấm <strong>"Xác Nhận Đặt Mua"</strong>, hệ thống sẽ hiển thị mã VietQR tự động điền sẵn số tiền để bạn quét thanh toán nhanh chóng.</p>
+        <p>• Đồng thời, hệ thống tự động soạn sẵn thông tin và chuyển bạn sang ô chat Messenger. Bạn chỉ cần bấm nút <strong>GỬI</strong> để hoàn tất lưu thông tin nhận sách.</p>
+        <p>• Nếu gặp bất kỳ vấn đề gì (không hiển thị mã QR, điền nhầm thông tin đơn hàng), vui lòng liên hệ trực tiếp qua Hotline hoặc Zalo: <a href="tel:0397885118"><strong>0397885118</strong></a> để được hỗ trợ ngay lập tức.</p>
     </section>
 </main>
+
 <div id="orderPopup">
     <div class="popup-content">
         <h3 id="bookNameDisplay">Tên sách</h3>
-        <p id="bookPriceDisplay" style="color: #00ff88; font-weight: bold;"></p>
-        <input type="text" id="custName" placeholder="Tên của bạn..." required>
-        <input type="tel" id="custPhone" placeholder="Số điện thoại Zalo..." required>
-        <input type="email" id="custEmail" placeholder="Địa chỉ Email của bạn..." required>
-        <button class="btn-confirm" onclick="sendToMessenger()">Xác Nhận Đặt Mua</button>
-        <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline;">Bỏ qua</button>
+        <p id="bookPriceDisplay" style="color: #00ff88; font-weight: bold; margin-bottom: 5px;"></p>
+        
+        <div id="popupForm">
+            <input type="text" id="custName" placeholder="Tên của bạn..." required>
+            <input type="tel" id="custPhone" placeholder="Số điện thoại Zalo..." required>
+            <input type="email" id="custEmail" placeholder="Địa chỉ Email của bạn..." required>
+            <button class="btn-confirm" onclick="generateVietQR()">Xác Nhận Đặt Mua</button>
+            <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline; display:block; width:100%;">Bỏ qua</button>
+        </div>
+
+        <div id="qrSection" class="qr-container">
+            <p style="color:#ff3e3e; font-size:15px; margin-bottom:8px;">Mã Thanh Toán Của Bạn</p>
+            <img id="vietQrImage" src="" alt="Mã VietQR Thanh Toán">
+            <p id="qrInfoAmount"></p>
+            <p id="qrInfoContent" style="font-size:11px; color:#555; background:#f4f5f7; padding:4px; border-radius:4px; word-break:break-all;"></p>
+            <p class="notice">Đang chuyển tiếp sang Messenger sau vài giây...</p>
+        </div>
     </div>
 </div>
+
 <footer>© 2026 Trí Lộ Trường Tồn — Kiến tạo tư duy kẻ cầm lái.</footer>
+
 <script>
     let currentBook = ""; let currentPrice = "";
-    function openPopup(name, price) { currentBook = name; currentPrice = price; document.getElementById('bookNameDisplay').innerText = name; document.getElementById('bookPriceDisplay').innerText = "Giá: " + price; document.getElementById('orderPopup').style.display = 'flex'; }
-    function closePopup() { document.getElementById('orderPopup').style.display = 'none'; }
-    function sendToMessenger() {
+    
+    // --- THÔNG TIN TÀI KHOẢN NGÂN HÀNG ĐÃ ĐƯỢC CẬP NHẬT HOÀN CHỈNH ---
+    const NGAN_HANG = "vietcombank"; 
+    const STK       = "1054523832";  
+    const TEN_CTK   = "VANG A SONG"; 
+    // -----------------------------------------------------------------
+
+    function openPopup(name, price) { 
+        currentBook = name; 
+        currentPrice = price; 
+        document.getElementById('bookNameDisplay').innerText = name; 
+        document.getElementById('bookPriceDisplay').innerText = "Giá: " + price; 
+        document.getElementById('popupForm').style.display = 'block';
+        document.getElementById('qrSection').style.display = 'none';
+        document.getElementById('orderPopup').style.display = 'flex'; 
+    }
+    
+    function closePopup() { 
+        document.getElementById('orderPopup').style.display = 'none'; 
+    }
+    
+    function generateVietQR() {
         const name = document.getElementById('custName').value.trim(); 
         const phone = document.getElementById('custPhone').value.trim();
         const email = document.getElementById('custEmail').value.trim();
         
         if(!name || !phone || !email) { alert("Vui lòng điền đủ thông tin!"); return; }
         
-        // Đoạn text sử dụng chính xác cấu trúc gốc đi kèm ID số Fanpage của bạn
-        const message = `ĐƠN HÀNG MỚI WEB:%0A------------------%0A📖 Sách: ${currentBook}%0A💰 Giá: ${currentPrice}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A------------------%0AVui lòng xác nhận gửi sách cho tôi!`;
+        // Chuyển chuỗi giá tiền "90.000đ" -> số nguyên sạch 90000 để đưa vào API VietQR
+        const amountNumber = parseInt(currentPrice.replace(/[^0-9]/g, ''));
         
-        window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
-        closePopup();
+        // Tạo nội dung chuyển khoản tự động (SĐT khách + Tên Sách viết liền không dấu)
+        const cleanBookName = currentBook.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/[^a-zA-Z0-9]/g, "");
+        const transferContent = `${phone} mua ${cleanBookName}`;
+
+        // Gọi API tạo link ảnh VietQR chuẩn mẫu quick-link
+        const vietQrUrl = `https://img.vietqr.io/image/${NGAN_HANG}-${STK}-compact2.png?amount=${amountNumber}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(TEN_CTK)}`;
+        
+        // Hiển thị mã QR lên giao diện popup
+        document.getElementById('vietQrImage').src = vietQrUrl;
+        document.getElementById('qrInfoAmount').innerHTML = `Số tiền: <strong style="color:#00ff88;font-size:16px;">${currentPrice}</strong>`;
+        document.getElementById('qrInfoContent').innerHTML = `Nội dung: <strong>${transferContent}</strong>`;
+        
+        // Ẩn form nhập dữ liệu, hiện khung chứa mã QR
+        document.getElementById('popupForm').style.display = 'none';
+        document.getElementById('qrSection').style.display = 'block';
+
+        // Chuẩn bị sẵn nội dung tin nhắn gửi sang Messenger của bạn
+        const message = `ĐƠN HÀNG MỚI WEB:%0A------------------%0A📖 Sách: ${currentBook}%0A💰 Giá: ${currentPrice}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A------------------%0A%0AĐã ghi nhận yêu cầu.%0AĐể nhận file ebooks hoàn chỉnh, b vui lòng hoàn tất thanh toán theo thông tin mã QR hiển thị trên màn hình.%0A%0A🏦 Ngân hàng: ${NGAN_HANG.toUpperCase()}%0A💳 Số tài khoản: ${STK}%0A👤 Chủ tài khoản: ${TEN_CTK}%0A💰 Số tiền: ${currentPrice}%0A📝 Nội dung CK: ${transferContent}%0A%0AHệ thống sẽ kiểm tra và gửi file cho b ngay sau khi nhận được chuyển khoản!`;
+
+        // Đợi 3 giây để khách kịp chụp màn hình mã QR rồi tự động kích hoạt nhảy sang Messenger
+        setTimeout(() => {
+            window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
+            closePopup();
+        }, 3000);
     }
 </script>
 </body>
