@@ -27,14 +27,17 @@
         .btn.buy { background: #ff3e3e; color: #fff; }
         .btn.buy:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 62, 62, 0.5); }
         #orderPopup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .popup-content { background: #1c2533; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #ff3e3e; text-align: center; }
-        .popup-content input { width: 100%; padding: 14px; margin: 12px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; }
-        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .popup-content { background: #1c2533; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #ff3e3e; text-align: center; position: relative; box-shadow: 0 0 30px rgba(255, 62, 62, 0.3); }
+        .popup-content input { width: 100%; padding: 14px; margin: 8px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; }
+        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; margin-top: 10px; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); transition: 0.3s; }
+        .btn-confirm:hover { background: #cc0000; }
         footer { text-align: center; padding: 50px 20px; font-size: 14px; color: #666; border-top: 1px solid #161c26; }
     </style>
 </head>
 <body>
+
 <header><h1>TRÍ LỘ TRƯỜNG TỒN — THẤU THỊ NHÂN TÍNH</h1></header>
+
 <main>
     <section class="grid">
         <article class="card">
@@ -50,6 +53,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/nhan-tinh-den-trang.jpg')"></div>
             <div class="info">
@@ -63,6 +67,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/tu-duy-sau-sac.jpg')"></div>
             <div class="info">
@@ -76,6 +81,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/thien-co-38-cuc.jpg')"></div>
             <div class="info">
@@ -89,6 +95,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/logic-nguoi-ngheo.jpg')"></div>
             <div class="info">
@@ -102,6 +109,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/kiem-dai.jpg')"></div>
             <div class="info">
@@ -117,26 +125,75 @@
         </article>
     </section>
 </main>
+
 <div id="orderPopup">
     <div class="popup-content">
-        <h3 id="bookNameDisplay">Tên sách</h3>
-        <p id="bookPriceDisplay" style="color: #00ff88; font-weight: bold;"></p>
+        <span onclick="closePopup()" style="position: absolute; top: 15px; right: 20px; color: #8892b0; font-size: 24px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.color='#ff3e3e'" onmouseout="this.style.color='#8892b0'">×</span>
+        
+        <h3 id="bookNameDisplay" style="font-size: 20px; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px;">Tên sách</h3>
+        <p id="bookPriceDisplay" style="color: #00ff88; font-size: 18px; font-weight: bold; margin-bottom: 15px;"></p>
+        
         <input type="text" id="custName" placeholder="Tên của bạn..." required>
         <input type="tel" id="custPhone" placeholder="Số điện thoại Zalo..." required>
-        <button class="btn-confirm" onclick="sendToMessenger()">Xác Nhận Đặt Mua</button>
-        <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline;">Bỏ qua</button>
+        <input type="email" id="custEmail" placeholder="Địa chỉ Email của bạn..." required>
+        
+        <button class="btn-confirm" onclick="sendToZalo()">Xác Nhận Đặt Mua</button>
+        
+        <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid #2a3341; display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #8892b0; text-align: center;">
+            <div><span style="color: #00ff88;">✓</span> Thông tin được bảo mật tuyệt đối</div>
+            <div><span style="color: #00ff88;">✓</span> Hỗ trợ gửi tài liệu trực tiếp qua Zalo & Email</div>
+        </div>
     </div>
 </div>
+
 <footer>© 2026 Trí Lộ Trường Tồn — Kiến tạo tư duy kẻ cầm lái.</footer>
+
 <script>
     let currentBook = ""; let currentPrice = "";
-    function openPopup(name, price) { currentBook = name; currentPrice = price; document.getElementById('bookNameDisplay').innerText = name; document.getElementById('bookPriceDisplay').innerText = "Giá: " + price; document.getElementById('orderPopup').style.display = 'flex'; }
-    function closePopup() { document.getElementById('orderPopup').style.display = 'none'; }
-    function sendToMessenger() {
-        const name = document.getElementById('custName').value; const phone = document.getElementById('custPhone').value;
-        if(!name || !phone) { alert("Vui lòng điền đủ thông tin!"); return; }
-        const message = `ĐƠN HÀNG MỚI WEB:%0A------------------%0A📖 Sách: ${currentBook}%0A💰 Giá: ${currentPrice}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A------------------%0AVui lòng xác nhận gửi sách cho tôi!`;
-        window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
+    
+    function openPopup(name, price) { 
+        currentBook = name; 
+        currentPrice = price; 
+        document.getElementById('bookNameDisplay').innerText = name; 
+        document.getElementById('bookPriceDisplay').innerText = "Giá: " + price; 
+        document.getElementById('orderPopup').style.display = 'flex'; 
+    }
+    
+    function closePopup() { 
+        document.getElementById('orderPopup').style.display = 'none'; 
+    }
+    
+    function sendToZalo() {
+        const name = document.getElementById('custName').value.trim(); 
+        const phone = document.getElementById('custPhone').value.trim();
+        const email = document.getElementById('custEmail').value.trim();
+        
+        // 1. Kiểm tra nhập liệu trống
+        if(!name || !phone || !email) { 
+            alert("Vui lòng điền đầy đủ thông tin để đặt mua sách!"); 
+            return; 
+        }
+        
+        // 2. Kiểm tra định dạng Email hợp lệ
+        const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!emailReg.test(email)) {
+            alert("Địa chỉ Email không hợp lệ! Vui lòng kiểm tra lại.");
+            return;
+        }
+
+        // 3. Đóng gói chuỗi thông tin đơn hàng gọn gàng
+        const orderDetails = `ĐƠN HÀNG WEB: ${currentBook}\nGiá: ${currentPrice}\nKhách hàng: ${name}\nSĐT: ${phone}\nEmail: ${email}\nVui lòng xác nhận gửi sách cho tôi!`;
+        
+        // 4. Cơ chế sao chép tự động giúp khách không cần gõ lại tin nhắn trong Zalo
+        navigator.clipboard.writeText(orderDetails).then(() => {
+            alert("Đã ghi nhận thông tin! Hệ thống đang chuyển hướng tới Zalo hỗ trợ. Bạn chỉ cần bấm 'Dán' (Paste) và gửi tin nhắn là xong.");
+            // Số điện thoại Zalo của bạn: 09397885118
+            window.open('https://zalo.me/09397885118', '_blank');
+        }).catch(() => {
+            // Dự phòng nếu trình duyệt cũ chặn quyền sao chép tự động
+            window.open('https://zalo.me/09397885118', '_blank');
+        });
+        
         closePopup();
     }
 </script>
