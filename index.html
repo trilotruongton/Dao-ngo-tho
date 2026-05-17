@@ -35,6 +35,9 @@
         .floating-cart:hover { transform: scale(1.1); }
         .cart-count { position: absolute; top: -5px; right: -5px; background: #00ff88; color: #0b0f15; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #0b0f15; }
 
+        /* KHUNG CHƯƠNG TRÌNH KHUYẾN MÃI TRÊN WEB */
+        .promo-banner { background: linear-gradient(135deg, #ff3e3e, #b30000); padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 25px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.3); border: 1px solid #ff6666; }
+
         .support-box { background: #161c26; border-left: 4px solid #ff3e3e; padding: 20px; border-radius: 8px; margin-top: 50px; border-top: 1px solid #2a3341; border-right: 1px solid #2a3341; border-bottom: 1px solid #2a3341; }
         .support-box h3 { margin: 0 0 10px 0; color: #fff; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
         .support-box p { margin: 5px 0; font-size: 14px; color: #b0b8d1; }
@@ -49,8 +52,15 @@
         
         /* DANH SÁCH SÁCH TRONG GIỎ HÀNG TẠI POPUP */
         .cart-summary { background: #0b0f15; border-radius: 8px; padding: 12px; margin: 15px 0; text-align: left; border: 1px solid #2a3341; }
-        .cart-item-line { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px dashed #2a3341; }
+        .cart-item-line { display: flex; justify-content: space-between; align-items: center; font-size: 14px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #2a3341; }
         .cart-item-line:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .item-info-left { display: flex; align-items: center; gap: 8px; max-width: 70%; }
+        .btn-remove { background: none; border: none; color: #ff4d4d; font-size: 14px; cursor: pointer; padding: 2px 5px; }
+        .btn-remove:hover { color: #ff0000; transform: scale(1.2); }
+        
+        /* HỘP QUÀ TẶNG TRONG POPUP */
+        .gift-box { background: #123824; border: 1px dashed #00ff88; color: #00ff88; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
         .cart-total-line { display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; color: #00ff88; margin-top: 10px; padding-top: 5px; border-top: 1px solid #2a3341; }
 
         /* KHUNG VIETQR */
@@ -65,20 +75,24 @@
 <body>
 <header><h1>TRÍ LỘ TRƯỜNG TỒN — THẤU THỊ NHÂN TÍNH</h1></header>
 <main>
+    <div class="promo-banner">
+        🔥 CHƯƠNG TRÌNH GIỚI HẠN: ĐẶT MUA TỪ 3 CUỐN SÁCH TRỞ LÊN ĐƯỢC TẶNG NGAY 1 CÂY CẢNH NHỎ (SHIP TẬN NƠI MIỄN PHÍ)! KHÔNG GIỚI HẠN SỐ LƯỢNG.
+    </div>
+
     <section class="grid">
         <article class="card">
             <div class="thumb" style="background-image:url('images/tuyet-mat-nhan-tinh.jpg')"></div>
             <div class="info">
                 <h2 class="title">Tuyệt Mật Nhân Tính</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
+                <div class="price"><del>150.000đ</del> → <strong>120.000đ</strong></div>
                 <p class="desc">Bóc tách sơ đồ mạch điện của nhân tính. Đừng để bị vận hành như một linh kiện.</p>
                 <div class="actions">
                     <div class="btn-group">
                         <a class="btn read" href="doc-thu.html?sach=tuyet-mat-nhan-tinh">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Tuyệt Mật Nhân Tính', 90000)">🛒 + Giỏ</button>
+                        <button class="btn add-cart" onclick="addToCart('Tuyệt Mật Nhân Tính', 120000)">🛒 + Giỏ</button>
                     </div>
-                    <button class="btn buy" onclick="buyNow('Tuyệt Mật Nhân Tính', 90000)">⚡ Mua Ngay</button>
+                    <button class="btn buy" onclick="buyNow('Tuyệt Mật Nhân Tính', 120000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -87,14 +101,14 @@
             <div class="info">
                 <h2 class="title">Nhân Tính Đen Trắng</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
+                <div class="price"><del>150.000đ</del> → <strong>120.000đ</strong></div>
                 <p class="desc">Nhìn thấu mặt sáng – tối của con người trong các mối quan hệ thực dụng.</p>
                 <div class="actions">
                     <div class="btn-group">
                         <a class="btn read" href="doc-thu.html?sach=nhan-tinh-den-trang">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Nhân Tính Đen Trắng', 90000)">🛒 + Giỏ</button>
+                        <button class="btn add-cart" onclick="addToCart('Nhân Tính Đen Trắng', 120000)">🛒 + Giỏ</button>
                     </div>
-                    <button class="btn buy" onclick="buyNow('Nhân Tính Đen Trắng', 90000)">⚡ Mua Ngay</button>
+                    <button class="btn buy" onclick="buyNow('Nhân Tính Đen Trắng', 120000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -103,14 +117,14 @@
             <div class="info">
                 <h2 class="title">Tư Duy Sâu Sắc</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>200.000đ</del> → <strong>150.000đ</strong></div>
+                <div class="price"><del>230.000đ</del> → <strong>180.000đ</strong></div>
                 <p class="desc">Rèn luyện tư duy chiều sâu, thoát khỏi sự thao túng của suy nghĩ bề mặt.</p>
                 <div class="actions">
                     <div class="btn-group">
                         <a class="btn read" href="doc-thu.html?sach=tu-duy-sau-sac">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Tư Duy Sâu Sắc', 150000)">🛒 + Giỏ</button>
+                        <button class="btn add-cart" onclick="addToCart('Tư Duy Sâu Sắc', 180000)">🛒 + Giỏ</button>
                     </div>
-                    <button class="btn buy" onclick="buyNow('Tư Duy Sâu Sắc', 150000)">⚡ Mua Ngay</button>
+                    <button class="btn buy" onclick="buyNow('Tư Duy Sâu Sắc', 180000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -119,14 +133,14 @@
             <div class="info">
                 <h2 class="title">Thiên Cơ 38 Cục</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>170.000đ</del> → <strong>120.000đ</strong></div>
+                <div class="price"><del>200.000đ</del> → <strong>150.000đ</strong></div>
                 <p class="desc">38 ván cờ thao túng và đọc vị thế cuộc đời. Dành cho kẻ muốn cầm lái.</p>
                 <div class="actions">
                     <div class="btn-group">
                         <a class="btn read" href="doc-thu.html?sach=thien-co-38-cuc">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Thiên Cơ 38 Cục', 120000)">🛒 + Giỏ</button>
+                        <button class="btn add-cart" onclick="addToCart('Thiên Cơ 38 Cục', 150000)">🛒 + Giỏ</button>
                     </div>
-                    <button class="btn buy" onclick="buyNow('Thiên Cơ 38 Cục', 120000)">⚡ Mua Ngay</button>
+                    <button class="btn buy" onclick="buyNow('Thiên Cơ 38 Cục', 150000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -135,14 +149,14 @@
             <div class="info">
                 <h2 class="title">Logic Người Nghèo</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>170.000đ</del> → <strong>100.000đ</strong></div>
+                <div class="price"><del>200.000đ</del> → <strong>130.000đ</strong></div>
                 <p class="desc">Nhận diện những bẫy tư duy xích chân con người mãi ở tầng thấp.</p>
                 <div class="actions">
                     <div class="btn-group">
                         <a class="btn read" href="doc-thu.html?sach=logic-nguoi-ngheo">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Logic Người Nghèo', 100000)">🛒 + Giỏ</button>
+                        <button class="btn add-cart" onclick="addToCart('Logic Người Nghèo', 130000)">🛒 + Giỏ</button>
                     </div>
-                    <button class="btn buy" onclick="buyNow('Logic Người Nghèo', 100000)">⚡ Mua Ngay</button>
+                    <button class="btn buy" onclick="buyNow('Logic Người Nghèo', 130000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -151,14 +165,14 @@
             <div class="info">
                 <h2 class="title">Kiếm Đại</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
+                <div class="price"><del>150.000đ</del> → <strong>120.000đ</strong></div>
                 <p class="desc">Góc nhìn sắc bén và hệ tư tưởng phản tỉnh đời sống thực tại.</p>
                 <div class="actions">
                     <div class="btn-group">
                         <a class="btn read" href="doc-thu.html?sach=kiem-dai">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Kiếm Đại', 90000)">🛒 + Giỏ</button>
+                        <button class="btn add-cart" onclick="addToCart('Kiếm Đại', 120000)">🛒 + Giỏ</button>
                     </div>
-                    <button class="btn buy" onclick="buyNow('Kiếm Đại', 90000)">⚡ Mua Ngay</button>
+                    <button class="btn buy" onclick="buyNow('Kiếm Đại', 120000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -167,8 +181,8 @@
     <section class="support-box">
         <h3>💡 Gợi ý dành cho Độc giả</h3>
         <p>• Bạn có thể bấm nút <strong>"🛒 + Giỏ"</strong> để gom nhiều cuốn sách khác nhau vào đơn hàng trước khi tiến hành thanh toán gộp một lần như Shopee.</p>
+        <p>• <strong>Ưu đãi đặc biệt:</strong> Khi giỏ hàng đạt từ 3 cuốn sách bất kỳ trở lên, bạn sẽ nhận được 1 cây cảnh nhỏ xinh xắn kèm sách ship tận nhà hoàn toàn miễn phí!</p>
         <p>• Sau khi điền thông tin, hệ thống hiển thị mã VietQR tự động điền sẵn tổng số tiền tất cả các cuốn sách bạn chọn.</p>
-        <p>• Hệ thống sẽ tự động soạn sẵn thông tin chi tiết đơn hàng chuyển bạn sang ô chat Messenger. Vui lòng bấm nút <strong>GỬI</strong> để hoàn tất.</p>
         <p>• Hotline/Zalo hỗ trợ: <a href="tel:0397885118"><strong>0397885118</strong></a>.</p>
     </section>
 </main>
@@ -180,7 +194,7 @@
 
 <div id="orderPopup">
     <div class="popup-content">
-        <h3 style="margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px;">Thông Tin Đơn Hàng</h3>
+        <h3 id="popupTitle" style="margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px;">Thông Tin Đơn Hàng</h3>
         
         <div class="cart-summary" id="cartSummaryList">
             </div>
@@ -189,6 +203,7 @@
             <input type="text" id="custName" placeholder="Tên của bạn..." required>
             <input type="tel" id="custPhone" placeholder="Số điện thoại Zalo..." required>
             <input type="email" id="custEmail" placeholder="Địa chỉ Email của bạn..." required>
+            <input type="text" id="custAddress" placeholder="Địa chỉ nhận cây cảnh tặng (Nếu mua từ 3 cuốn)...">
             <button class="btn-confirm" onclick="processCheckout()">Xác Nhận Đặt Mua</button>
             <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline; display:block; width:100%;">Quay lại chọn tiếp</button>
         </div>
@@ -206,23 +221,20 @@
 <footer>© 2026 Trí Lộ Trường Tồn — Kiến tạo tư duy kẻ cầm lái.</footer>
 
 <script>
-    // Mảng lưu trữ danh sách mặt hàng trong giỏ
     let cart = [];
     
-    // --- CẤU HÌNH NGÂN HÀNG CỦA BẠN VANG A SONG ---
+    // --- THÔNG TIN TÀI KHOẢN NGÂN HÀNG CHÍNH CHỦ CỦA BẠN ---
     const NGAN_HANG = "vietcombank"; 
     const STK       = "1054523832";  
     const TEN_CTK   = "VANG A SONG"; 
     // -----------------------------------------------------------------
 
-    // Hàm định dạng tiền tệ dạng hiển thị (Ví dụ: 180000 -> 180.000đ)
     function formatMoney(num) {
         return num.toLocaleString('vi-VN') + "đ";
     }
 
-    // 1. Thêm sản phẩm vào giỏ hàng (Kiểu Shopee)
+    // 1. Thêm sản phẩm vào giỏ hàng
     function addToCart(bookName, price) {
-        // Kiểm tra xem cuốn sách này đã được thêm chưa để tránh trùng lặp
         const existing = cart.find(item => item.name === bookName);
         if (!existing) {
             cart.push({ name: bookName, price: price });
@@ -233,36 +245,55 @@
         }
     }
 
-    // Cập nhật số hiển thị trên icon giỏ hàng nổi
     function updateCartCount() {
         document.getElementById('cartCount').innerText = cart.length;
     }
 
-    // 2. Chức năng Mua ngay (Xóa hết giỏ cũ, thêm duy nhất cuốn này rồi mở popup luôn)
+    // 2. Chức năng Mua ngay
     function buyNow(bookName, price) {
         cart = [{ name: bookName, price: price }];
         updateCartCount();
         openCartPopup();
     }
 
-    // 3. Mở popup hiển thị tổng thể đơn hàng để nhập thông tin
-    function openCartPopup() {
+    // 3. Xóa sản phẩm khỏi giỏ hàng
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartCount();
+        
         if (cart.length === 0) {
-            alert("Giỏ hàng của bạn đang trống! Vui lòng chọn sách trước.");
-            return;
+            alert("Giỏ hàng của bạn đã trống!");
+            closePopup();
+        } else {
+            renderCartList();
         }
+    }
 
+    // Hàm vẽ danh sách sách, kiểm tra điều kiện tặng quà (>=3 cuốn)
+    function renderCartList() {
         let html = "";
         let total = 0;
         
-        // Vòng lặp kết xuất danh sách sách ra giao diện popup
         cart.forEach((item, index) => {
             html += `<div class="cart-item-line">
-                        <span>${index + 1}. ${item.name}</span>
+                        <div class="item-info-left">
+                            <button class="btn-remove" onclick="removeFromCart(${index})" title="Xóa cuốn này">❌</button>
+                            <span>${index + 1}. ${item.name}</span>
+                        </div>
                         <strong>${formatMoney(item.price)}</strong>
                      </div>`;
             total += item.price;
         });
+
+        // Báo tặng cây cảnh nếu chọn từ 3 cuốn trở lên
+        if (cart.length >= 3) {
+            html += `<div class="gift-box">🎉 CHÚC MỪNG: Bạn được tặng 1 cây cảnh nhỏ + Ship tận nơi!</div>`;
+            document.getElementById('custAddress').style.display = "block";
+            document.getElementById('custAddress').setAttribute("required", "true");
+        } else {
+            document.getElementById('custAddress').style.display = "none";
+            document.getElementById('custAddress').removeAttribute("required");
+        }
         
         html += `<div class="cart-total-line">
                     <span>TỔNG THANH TOÁN:</span>
@@ -270,8 +301,17 @@
                  </div>`;
                  
         document.getElementById('cartSummaryList').innerHTML = html;
-        
-        // Reset giao diện popup về trạng thái điền form ban đầu
+    }
+
+    // 4. Mở popup hiển thị tổng thể đơn hàng
+    function openCartPopup() {
+        if (cart.length === 0) {
+            alert("Giỏ hàng của bạn đang trống! Vui lòng chọn sách trước.");
+            return;
+        }
+
+        renderCartList();
+                 
         document.getElementById('popupForm').style.display = 'block';
         document.getElementById('qrSection').style.display = 'none';
         document.getElementById('orderPopup').style.display = 'flex';
@@ -281,31 +321,30 @@
         document.getElementById('orderPopup').style.display = 'none'; 
     }
     
-    // 4. Xử lý tạo cổng QR gộp và đẩy dữ liệu liên kết Messenger
+    // 5. Xử lý tạo cổng QR gộp và kết nối Messenger
     function processCheckout() {
         const name = document.getElementById('custName').value.trim(); 
         const phone = document.getElementById('custPhone').value.trim();
         const email = document.getElementById('custEmail').value.trim();
+        const address = document.getElementById('custAddress').value.trim();
         
         if(!name || !phone || !email) { alert("Vui lòng điền đủ thông tin để nhận sách!"); return; }
+        if(cart.length >= 3 && !address) { alert("Bạn đủ điều kiện nhận cây cảnh, vui lòng điền Địa chỉ nhận quà!"); return; }
         
         let totalAmount = 0;
         let bookNamesArray = [];
         
         cart.forEach(item => {
             totalAmount += item.price;
-            // Chuyển tên sách thành dạng viết liền không dấu ngắn gọn để ghép nội dung CK
             let shortName = item.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/[^a-zA-Z0-9]/g, "");
             bookNamesArray.push(shortName);
         });
 
-        // Tạo chuỗi nội dung chuyển khoản gộp (Ví dụ: 0397885118 mua TuyetMatNhanTinh NhanTinhDenTrang)
-        const transferContent = `${phone} mua ${bookNamesArray.join(" ")}`.substring(0, 50); // Giới hạn ký tự tránh lỗi chuỗi QR quá dài
+        const transferContent = `${phone} mua ${bookNamesArray.join(" ")}`.substring(0, 50);
 
-        // Tạo link ảnh VietQR gộp tổng tiền của tất cả các cuốn sách được chọn
+        // Gọi API sinh mã VietQR gộp
         const vietQrUrl = `https://img.vietqr.io/image/${NGAN_HANG}-${STK}-compact2.png?amount=${totalAmount}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(TEN_CTK)}`;
         
-        // Cập nhật hiển thị mã QR gộp lên màn hình
         document.getElementById('vietQrImage').src = vietQrUrl;
         document.getElementById('qrInfoAmount').innerHTML = `Tổng số tiền: <strong style="color:#00ff88;font-size:18px;">${formatMoney(totalAmount)}</strong>`;
         document.getElementById('qrInfoContent').innerHTML = `Nội dung CK bắt buộc: <strong>${transferContent}</strong>`;
@@ -313,19 +352,24 @@
         document.getElementById('popupForm').style.display = 'none';
         document.getElementById('qrSection').style.display = 'block';
 
-        // Biên soạn văn bản chi tiết đơn hàng gộp để chuyển sang Messenger
         let listBooksText = "";
         cart.forEach((item, index) => {
             listBooksText += `📖 ${index + 1}. ${item.name} (${formatMoney(item.price)})%0A`;
         });
 
-        const message = `ĐƠN HÀNG MỚI WEB (GIỎ HÀNG MULTI):%0A------------------%0A${listBooksText}💰 Tổng thanh toán: ${formatMoney(totalAmount)}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A------------------%0A%0AĐã ghi nhận yêu cầu.%0AĐể nhận file ebooks hoàn chỉnh, b vui lòng thanh toán theo mã QR tổng hiển thị trên màn hình.%0A%0A🏦 Ngân hàng: ${NGAN_HANG.toUpperCase()}%0A💳 Số tài khoản: ${STK}%0A👤 Chủ tài khoản: ${TEN_CTK}%0A💰 Tổng tiền: ${formatMoney(totalAmount)}%0A📝 Nội dung CK: ${transferContent}%0A%0AHệ thống sẽ đối soát đơn hàng và gửi file qua Messenger/Email cho b ngay lập tức!`;
+        // Chuỗi văn bản báo Quà tặng nếu thỏa mãn điều kiện
+        let giftText = "KHÔNG CÓ (Chưa đủ điều kiện mua 3 cuốn)";
+        if(cart.length >= 3) {
+            giftText = `🎁 ĐỦ ĐIỀU KIỆN TẶNG 1 CÂY CẢNH NHỎ!%0A📍 Địa chỉ nhận quà: ${address}`;
+        }
 
-        // Chờ 4 giây để khách kịp xem tổng tiền hoặc chụp màn hình QR rồi tự động bật ứng dụng Messenger chat với Page
+        const message = `ĐƠN HÀNG MỚI WEB (GIỎ HÀNG MULTI):%0A------------------%0A${listBooksText}💰 Tổng thanh toán: ${formatMoney(totalAmount)}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A🎁 QUÀ TẶNG KÈM: ${giftText}%0A------------------%0A%0AĐã ghi nhận yêu cầu.%0AĐể nhận file ebooks hoàn chỉnh + Quà tặng (nếu có), b vui lòng thanh toán theo mã QR tổng hiển thị trên màn hình.%0A%0A🏦 Ngân hàng: ${NGAN_HANG.toUpperCase()}%0A💳 Số tài khoản: ${STK}%0A👤 Chủ tài khoản: ${TEN_CTK}%0A💰 Tổng tiền: ${formatMoney(totalAmount)}%0A📝 Nội dung CK: ${transferContent}%0A%0AHệ thống sẽ đối soát đơn hàng và gửi file qua Messenger/Email cho b ngay lập tức!`;
+
+        // Đợi 4 giây cho khách kịp quét/chụp màn hình rồi mở Messenger tự động
         setTimeout(() => {
             window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
             closePopup();
-            cart = []; // Làm trống giỏ hàng sau khi đã gửi đơn đi thành công
+            cart = []; 
             updateCartCount();
         }, 4000);
     }
