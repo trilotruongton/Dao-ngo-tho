@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinh Thiên Động Đạo</title>
+    <title>Trí Lộ Trường Tồn — Tuyệt Mật Nhân Tính</title>
     <style>
         body { margin: 0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: #0b0f15; color: #eee; line-height: 1.6; }
         header { background: #000; color: #fff; padding: 20px; text-align: center; border-bottom: 2px solid #ff3e3e; box-shadow: 0 4px 20px rgba(255, 62, 62, 0.2); }
@@ -20,13 +20,14 @@
         .price { margin: 5px 0; }
         .price del { color: #ff4d4d; font-size: 14px; margin-right: 10px; }
         .price strong { color: #00ff88; font-size: 20px; }
-        .desc { font-size: 14px; color: #b0b8d1; flex: 1; min-height: 72px; }
+        .desc { font-size: 14px; color: #b0b8d1; flex: 1; }
         .actions { display: flex; gap: 12px; margin-top: 15px; }
         .btn { flex: 1; text-align: center; padding: 12px; border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; font-size: 14px; transition: 0.3s; }
         .btn.read { background: #2a3341; color: #fff; }
         .btn.buy { background: #ff3e3e; color: #fff; }
         .btn.buy:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 62, 62, 0.5); }
         
+        /* PHẦN GỢI Ý ĐỘC GIẢ & SĐT TRỢ GIÚP */
         .support-box { background: #161c26; border-left: 4px solid #ff3e3e; padding: 20px; border-radius: 8px; margin-top: 50px; border-top: 1px solid #2a3341; border-right: 1px solid #2a3341; border-bottom: 1px solid #2a3341; }
         .support-box h3 { margin: 0 0 10px 0; color: #fff; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
         .support-box p { margin: 5px 0; font-size: 14px; color: #b0b8d1; }
@@ -34,17 +35,14 @@
         .support-box a:hover { text-decoration: underline; }
 
         #orderPopup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .popup-content { background: #1c2533; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #ff3e3e; text-align: center; position: relative; box-shadow: 0 0 30px rgba(255, 62, 62, 0.3); box-sizing: border-box; }
-        .popup-content input { width: 100%; display: block; padding: 14px; margin: 10px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; font-size: 14px; }
-        .btn-confirm { width: 100%; display: block; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; margin-top: 15px; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); transition: 0.3s; font-size: 14px; }
-        .btn-confirm:hover { background: #cc0000; }
+        .popup-content { background: #1c2533; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #ff3e3e; text-align: center; }
+        .popup-content input { width: 100%; padding: 14px; margin: 12px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; }
+        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
         footer { text-align: center; padding: 50px 20px; font-size: 14px; color: #666; border-top: 1px solid #161c26; margin-top: 30px; }
     </style>
 </head>
 <body>
-
-<header><h1>KINH THIÊN ĐỘNG ĐẠO</h1></header>
-
+<header><h1>TRÍ LỘ TRƯỜNG TỒN — THẤU THỊ NHÂN TÍNH</h1></header>
 <main>
     <section class="grid">
         <article class="card">
@@ -53,77 +51,72 @@
                 <h2 class="title">Tuyệt Mật Nhân Tính</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
                 <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
-                <p class="desc">Con người không vận hành bằng lý trí, họ hành động bằng ham muốn, nỗi sợ và bản năng sinh tồn. Ai nắm được sơ đồ mạch điện này sẽ làm chủ cuộc chơi.</p>
+                <p class="desc">Bóc tách sơ đồ mạch điện của nhân tính. Đừng để bị vận hành như một linh kiện.</p>
                 <div class="actions">
                     <a class="btn read" href="doc-thu.html?sach=tuyet-mat-nhan-tinh">📖 Đọc thử</a>
                     <button class="btn buy" onclick="openPopup('Tuyệt Mật Nhân Tính', '90.000đ')">💬 Đặt mua</button>
                 </div>
             </div>
         </article>
-
         <article class="card">
             <div class="thumb" style="background-image:url('images/nhan-tinh-den-trang.jpg')"></div>
             <div class="info">
                 <h2 class="title">Nhân Tính Đen Trắng</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
                 <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
-                <p class="desc">Lột trần sự thật tàn nhẫn đằng sau các mối quan hệ thực dụng. Nhìn thấu phần "con" để không bao giờ trở thành nạn nhân của những vở kịch đạo đức.</p>
+                <p class="desc">Nhìn thấu mặt sáng – tối của con người trong các mối quan hệ thực dụng.</p>
                 <div class="actions">
                     <a class="btn read" href="doc-thu.html?sach=nhan-tinh-den-trang">📖 Đọc thử</a>
                     <button class="btn buy" onclick="openPopup('Nhân Tính Đen Trắng', '90.000đ')">💬 Đặt mua</button>
                 </div>
             </div>
         </article>
-
         <article class="card">
             <div class="thumb" style="background-image:url('images/tu-duy-sau-sac.jpg')"></div>
             <div class="info">
                 <h2 class="title">Tư Duy Sâu Sắc</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
                 <div class="price"><del>200.000đ</del> → <strong>150.000đ</strong></div>
-                <p class="desc">Bẻ gãy tư duy lối mòn – thứ khiến bạn luôn đi sau kẻ khác. Rèn luyện bộ não nhìn xuyên thấu bản chất vấn đề khi đám đông còn đang mơ hồ.</p>
+                <p class="desc">Rèn luyện tư duy chiều sâu, thoát khỏi sự thao túng của suy nghĩ bề mặt.</p>
                 <div class="actions">
                     <a class="btn read" href="doc-thu.html?sach=tu-duy-sau-sac">📖 Đọc thử</a>
                     <button class="btn buy" onclick="openPopup('Tư Duy Sâu Sắc', '150.000đ')">💬 Đặt mua</button>
                 </div>
             </div>
         </article>
-
         <article class="card">
             <div class="thumb" style="background-image:url('images/thien-co-38-cuc.jpg')"></div>
             <div class="info">
                 <h2 class="title">Thiên Cơ 38 Cục</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
                 <div class="price"><del>170.000đ</del> → <strong>120.000đ</strong></div>
-                <p class="desc">38 chiến lược thao túng, phòng thủ và đọc vị thế cuộc đời. Vũ khí tối thượng dành cho những ai đã chán làm quân cờ và muốn bước lên vị trí cầm lái.</p>
+                <p class="desc">38 ván cờ thao túng và đọc vị thế cuộc đời. Dành cho kẻ muốn cầm lái.</p>
                 <div class="actions">
                     <a class="btn read" href="doc-thu.html?sach=thien-co-38-cuc">📖 Đọc thử</a>
                     <button class="btn buy" onclick="openPopup('Thiên Cơ 38 Cục', '120.000đ')">💬 Đặt mua</button>
                 </div>
             </div>
         </article>
-
         <article class="card">
             <div class="thumb" style="background-image:url('images/logic-nguoi-ngheo.jpg')"></div>
             <div class="info">
                 <h2 class="title">Logic Người Nghèo</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
                 <div class="price"><del>170.000đ</del> → <strong>100.000đ</strong></div>
-                <p class="desc">Phần lớn người nghèo không nghèo vì thiếu tiền, họ nghèo vì bộ não đã bị lập trình để tự phá hủy. Đập tan xiềng xích tư duy đang giam giữ bạn.</p>
+                <p class="desc">Nhận diện những bẫy tư duy xích chân con người mãi ở tầng thấp.</p>
                 <div class="actions">
                     <a class="btn read" href="doc-thu.html?sach=logic-nguoi-ngheo">📖 Đọc thử</a>
                     <button class="btn buy" onclick="openPopup('Logic Người Nghèo', '100.000đ')">💬 Đặt mua</button>
                 </div>
             </div>
         </article>
-
         <article class="card">
             <div class="thumb" style="background-image:url('images/kiem-dai.jpg')"></div>
             <div class="info">
                 <h2 class="title">Kiếm Đại</h2>
                 <div class="author">Xuyên Thấu Nhân Tính</div>
                 <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
-                <p class="desc">Góc nhìn lạnh lùng, sắc bén, đập tan mọi ảo tưởng về thực tại. Hệ tư tưởng phản tỉnh mạnh mẽ để bạn nhìn đời bằng cái đầu lạnh của kẻ thức tỉnh.</p>
+                <p class="desc">Góc nhìn sắc bén và hệ tư tưởng phản tỉnh đời sống thực tại.</p>
                 <div class="actions">
                     <a class="btn read" href="doc-thu.html?sach=kiem-dai">📖 Đọc thử</a>
                     <button class="btn buy" onclick="openPopup('Kiếm Đại', '90.000đ')">💬 Đặt mua</button>
@@ -134,98 +127,37 @@
 
     <section class="support-box">
         <h3>💡 Gợi ý dành cho Độc giả</h3>
-        <p>• Sau khi điền thông tin và bấm <strong>"Xác Nhận Đặt Mua"</strong>, hệ thống sẽ tự động sao chép thông tin đơn hàng và mở ứng dụng Messenger.</p>
-        <p>• Nếu ô chat Messenger hiển thị trống chữ, bạn chỉ cần <strong>ẤN GIỮ vào ô nhập tin nhắn</strong> rồi chọn <strong>"DÁN" (Paste)</strong> và gửi đi để xác nhận nhận sách nhanh nhất.</p>
-        <p>• Trường hợp gặp bất kỳ sự cố nào về đường truyền hoặc điền nhầm thông tin, xin vui lòng gọi hoặc liên hệ Zalo số: <a href="tel:0397885118"><strong>0397885118</strong></a> để đội ngũ hỗ trợ xử lý ngay.</p>
+        <p>• Sau khi điền thông tin và bấm <strong>"Xác Nhận Đặt Mua"</strong>, hệ thống sẽ tự động soạn sẵn thông tin và chuyển bạn sang ô chat Messenger. Bạn chỉ cần bấm nút <strong>GỬI</strong> để hoàn tất.</p>
+        <p>• Nếu gặp bất kỳ vấn đề gì (không nhận được phản hồi, điền nhầm thông tin đơn hàng), vui lòng liên hệ trực tiếp qua Hotline hoặc Zalo: <a href="tel:0397885118"><strong>0397885118</strong></a> để được xử lý ngay lập tức.</p>
     </section>
 </main>
-
 <div id="orderPopup">
     <div class="popup-content">
-        <span onclick="closePopup()" style="position: absolute; top: 15px; right: 20px; color: #8892b0; font-size: 24px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.color='#ff3e3e'" onmouseout="this.style.color='#8892b0'">×</span>
-        
         <h3 id="bookNameDisplay">Tên sách</h3>
-        <p id="bookPriceDisplay" style="color: #00ff88; font-size: 18px; font-weight: bold; margin-bottom: 15px;"></p>
-        
+        <p id="bookPriceDisplay" style="color: #00ff88; font-weight: bold;"></p>
         <input type="text" id="custName" placeholder="Tên của bạn..." required>
-        <input type="tel" id="custPhone" placeholder="Số điện thoại của bạn..." required>
+        <input type="tel" id="custPhone" placeholder="Số điện thoại Zalo..." required>
         <input type="email" id="custEmail" placeholder="Địa chỉ Email của bạn..." required>
-        
         <button class="btn-confirm" onclick="sendToMessenger()">Xác Nhận Đặt Mua</button>
-        
-        <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid #2a3341; display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #8892b0; text-align: center;">
-            <div><span style="color: #00ff88;">✓</span> Đơn hàng tự động sao chép lưu vào bộ đệm máy</div>
-            <div><span style="color: #00ff88;">✓</span> Hệ thống đồng bộ tối ưu hóa giao diện di động</div>
-        </div>
+        <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline;">Bỏ qua</button>
     </div>
 </div>
-
-<footer>© 2026 Kinh Thiên Động Đạo — Kiến tạo tư duy kẻ cầm lái.</footer>
-
+<footer>© 2026 Trí Lộ Trường Tồn — Kiến tạo tư duy kẻ cầm lái.</footer>
 <script>
     let currentBook = ""; let currentPrice = "";
-    
-    function openPopup(name, price) { 
-        currentBook = name; 
-        currentPrice = price; 
-        document.getElementById('bookNameDisplay').innerText = name; 
-        document.getElementById('bookPriceDisplay').innerText = "Giá: " + price; 
-        document.getElementById('orderPopup').style.display = 'flex'; 
-    }
-    
-    function closePopup() { 
-        document.getElementById('orderPopup').style.display = 'none'; 
-    }
-    
+    function openPopup(name, price) { currentBook = name; currentPrice = price; document.getElementById('bookNameDisplay').innerText = name; document.getElementById('bookPriceDisplay').innerText = "Giá: " + price; document.getElementById('orderPopup').style.display = 'flex'; }
+    function closePopup() { document.getElementById('orderPopup').style.display = 'none'; }
     function sendToMessenger() {
         const name = document.getElementById('custName').value.trim(); 
         const phone = document.getElementById('custPhone').value.trim();
         const email = document.getElementById('custEmail').value.trim();
         
-        if(!name || !phone || !email) { 
-            alert("Vui lòng điền đầy đủ thông tin để đặt mua sách!"); 
-            return; 
-        }
+        if(!name || !phone || !email) { alert("Vui lòng điền đủ thông tin!"); return; }
         
-        const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if(!emailReg.test(email)) {
-            alert("Địa chỉ Email không hợp lệ! Vui lòng kiểm tra lại.");
-            return;
-        }
-
-        const orderDetails = `ĐƠN HÀNG WEB: ${currentBook}\nGiá: ${currentPrice}\nKhách hàng: ${name}\nSĐT: ${phone}\nEmail: ${email}\nVui lòng xác nhận gửi sách cho tôi!`;
+        // Đoạn text sử dụng chính xác cấu trúc gốc đi kèm ID số Fanpage của bạn
+        const message = `ĐƠN HÀNG MỚI WEB:%0A------------------%0A📖 Sách: ${currentBook}%0A💰 Giá: ${currentPrice}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A------------------%0AVui lòng xác nhận gửi sách cho tôi!`;
         
-        // Thực hiện sao chép dự phòng bắt buộc
-        const tempInput = document.createElement("textarea");
-        tempInput.value = orderDetails;
-        tempInput.style.position = "fixed"; tempInput.style.top = "0"; tempInput.style.left = "0"; tempInput.style.opacity = "0";
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        tempInput.setSelectionRange(0, 99999);
-        let isCopied = false;
-        try { isCopied = document.execCommand("copy"); } catch (err) { isCopied = false; }
-        document.body.removeChild(tempInput);
-
-        const encodedText = encodeURIComponent(orderDetails);
-        
-        // THIẾT LẬP ĐƯỜNG LINK NGĂN CHẶN LỖI TRÌNH DUYỆT TRÊN ĐIỆN THOẠI
-        // Hãy kiểm tra chính xác ID Fanpage Facebook của bạn (Thay thế 'KinhThienDongDao' nếu cần)
-        const webUrl = `https://m.me/KinhThienDongDao?text=${encodedText}`;
-        const appUrl = `fb-messenger://user-thread/KinhThienDongDao`; 
-
-        alert("Thông tin đơn hàng đã được sao chép tự động!\n\nHệ thống sẽ mở Messenger ngay bây giờ. Nếu ô chat bị trống, bạn chỉ cần ĐÈ GIỮ VÀO Ô NHẬP chữ rồi chọn 'DÁN' (Paste) và gửi đi.");
-
-        // Cơ chế kích hoạt luồng thông minh chống lỗi app mã nguồn đóng
-        const startTime = Date.now();
-        window.location.href = appUrl; // Thử ép hệ điều hành gọi app gốc trực tiếp
-
-        setTimeout(() => {
-            // Nếu sau 1.2 giây máy không phản hồi với app gốc (có thể do đang ở trong webview fb), đẩy tiếp sang link web tiêu chuẩn
-            if (Date.now() - startTime < 1500) {
-                window.location.href = webUrl;
-            }
-        }, 1200);
-        
+        window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
         closePopup();
     }
 </script>
