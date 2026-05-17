@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trí Lộ Trường Tồn — Tuyệt Mật Nhân Tính</title>
+    <title>Kinh Thiên Động Đạo</title>
     <style>
         body { margin: 0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: #0b0f15; color: #eee; line-height: 1.6; }
         header { background: #000; color: #fff; padding: 20px; text-align: center; border-bottom: 2px solid #ff3e3e; box-shadow: 0 4px 20px rgba(255, 62, 62, 0.2); }
@@ -37,7 +37,7 @@
 </head>
 <body>
 
-<header><h1>TRÍ LỘ TRƯỜNG TỒN — THẤU THỊ NHÂN TÍNH</h1></header>
+<header><h1>KINH THIÊN ĐỘNG ĐẠO</h1></header>
 
 <main>
     <section class="grid">
@@ -147,7 +147,7 @@
     </div>
 </div>
 
-<footer>© 2026 Trí Lộ Trường Tồn — Kiến tạo tư duy kẻ cầm lái.</footer>
+<footer>© 2026 Kinh Thiên Động Đạo — Kiến tạo tư duy kẻ cầm lái.</footer>
 
 <script>
     let currentBook = ""; let currentPrice = "";
@@ -180,15 +180,19 @@
             return;
         }
 
-        const orderDetails = `ĐƠN HÀNG WEB: ${currentBook} - Giá: ${currentPrice} - Khách hàng: ${name} - SĐT: ${phone} - Email: ${email}`;
+        const orderDetails = `ĐƠN HÀNG WEB: ${currentBook}\nGiá: ${currentPrice}\nKhách hàng: ${name}\nSĐT: ${phone}\nEmail: ${email}\nVui lòng xác nhận gửi sách cho tôi!`;
 
-        // CHIẾN THUẬT ÉP COPY HỢP LỆ TRÊN MỌI TRÌNH DUYỆT DI ĐỘNG:
-        // Tạo một ô input tạm thời, chọn text và chạy lệnh copy trực tiếp bằng hành động click của người dùng
+        // Cơ chế sao chép chuẩn tối ưu hóa cho di động
         const tempInput = document.createElement("textarea");
         tempInput.value = orderDetails;
+        // Tránh làm lệch giao diện cuộn khi focus trên iOS
+        tempInput.style.position = "fixed";
+        tempInput.style.top = "0";
+        tempInput.style.left = "0";
+        tempInput.style.opacity = "0";
         document.body.appendChild(tempInput);
         tempInput.select();
-        tempInput.setSelectionRange(0, 99999); // Hỗ trợ thiết bị di động iOS/Android
+        tempInput.setSelectionRange(0, 99999);
         
         let copySuccess = false;
         try {
@@ -199,14 +203,13 @@
         document.body.removeChild(tempInput);
 
         if (copySuccess) {
-            alert("Thông tin đơn hàng đã được tự động copy vào bộ nhớ máy!\n\nBạn bấm OK hệ thống sẽ mở Zalo. Bạn chỉ cần vào phần nhắn tin, giữ màn hình chọn 'DÁN' (Paste) rồi gửi đi là xong!");
+            alert("Thông tin đơn hàng đã được sao chép tự động!\n\nBạn bấm OK hệ thống sẽ mở ứng dụng Zalo. Tại ô nhập tin nhắn Zalo, bạn chỉ cần ấn GIỮ MÀN HÌNH rồi chọn 'DÁN' (Paste) và gửi đi là xong.");
         } else {
-            // Trường hợp trình duyệt bảo mật cực đoan chặn copy ngầm, hệ thống sẽ đưa thông báo thủ công để khách không bị sót thông tin đơn
-            alert(`Vui lòng copy dòng thông tin này trước khi sang Zalo:\n\n${orderDetails}`);
+            alert(`Do trình duyệt bảo mật, vui lòng sao chép thủ công dòng thông tin đơn hàng này trước khi sang Zalo:\n\n${orderDetails}`);
         }
         
-        // Mở Zalo số điện thoại đích
-        window.open('https://zalo.me/09397885118', '_blank');
+        // Mở Zalo đích với số điện thoại chính xác (0397885118)
+        window.open('https://zalo.me/0397885118', '_blank');
         closePopup();
     }
 </script>
