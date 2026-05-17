@@ -33,12 +33,6 @@
         .btn-confirm { width: 100%; display: block; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; margin-top: 15px; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); transition: 0.3s; font-size: 14px; }
         .btn-confirm:hover { background: #cc0000; }
         footer { text-align: center; padding: 50px 20px; font-size: 14px; color: #666; border-top: 1px solid #161c26; }
-
-        /* POPUP PHỤ ĐỂ ÉP KHÁCH COPY KHÔNG BỊ TRÌNH DUYỆT CHẶN */
-        #copyPopup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 2000; justify-content: center; align-items: center; }
-        .copy-content { background: #1c2533; padding: 25px; border-radius: 12px; width: 85%; max-width: 380px; border: 1px solid #00ff88; text-align: center; }
-        .textarea-box { width: 100%; height: 110px; background: #0b0f15; color: #00ff88; border: 1px solid #2a3341; padding: 10px; border-radius: 6px; box-sizing: border-box; font-family: monospace; font-size: 12px; margin: 15px 0; resize: none; }
-        .btn-copy-trigger { width: 100%; background: #00ff88; color: #000; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -144,21 +138,12 @@
         <input type="tel" id="custPhone" placeholder="Số điện thoại Zalo..." required>
         <input type="email" id="custEmail" placeholder="Địa chỉ Email của bạn..." required>
         
-        <button class="btn-confirm" onclick="processOrder()">Xác Nhận Đặt Mua</button>
+        <button class="btn-confirm" onclick="sendToZalo()">Xác Nhận Đặt Mua</button>
         
         <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid #2a3341; display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #8892b0; text-align: center;">
             <div><span style="color: #00ff88;">✓</span> Thông tin được bảo mật tuyệt đối</div>
-            <div><span style="color: #00ff88;">✓</span> Chuyển thẳng tới Zalo hỗ trợ nhận sách</div>
+            <div><span style="color: #00ff88;">✓</span> Hệ thống tự động xử lý mã đơn hàng</div>
         </div>
-    </div>
-</div>
-
-<div id="copyPopup">
-    <div class="copy-content">
-        <h3 style="color: #fff; margin: 0; font-size: 18px;">XÁC NHẬN ĐƠN HÀNG</h3>
-        <p style="color: #b0b8d1; font-size: 13px; margin: 5px 0;">Bước cuối: Bấm nút xanh bên dưới để copy đơn hàng, sau đó dán vào ô nhắn tin Zalo.</p>
-        <textarea id="textOrderContent" class="textarea-box" readonly></textarea>
-        <button class="btn-copy-trigger" onclick="executeCopyAndGo()">Copy đơn hàng & Mở Zalo</button>
     </div>
 </div>
 
@@ -179,7 +164,7 @@
         document.getElementById('orderPopup').style.display = 'none'; 
     }
     
-    function processOrder() {
+    function sendToZalo() {
         const name = document.getElementById('custName').value.trim(); 
         const phone = document.getElementById('custPhone').value.trim();
         const email = document.getElementById('custEmail').value.trim();
@@ -195,31 +180,34 @@
             return;
         }
 
-        // Tạo văn bản đơn hàng đưa vào ô text ẩn để sẵn sàng copy công khai
-        const orderDetails = `ĐƠN HÀNG WEB: ${currentBook}\nGiá: ${currentPrice}\nKhách hàng: ${name}\nSĐT: ${phone}\nEmail: ${email}\nVui lòng gửi sách cho tôi!`;
-        document.getElementById('textOrderContent').value = orderDetails;
-        
-        // Đóng popup thông tin, mở popup copy cưỡng chế quyền hệ thống
-        document.getElementById('orderPopup').style.display = 'none';
-        document.getElementById('copyPopup').style.display = 'flex';
-    }
+        const orderDetails = `ĐƠN HÀNG WEB: ${currentBook} - Giá: ${currentPrice} - Khách hàng: ${name} - SĐT: ${phone} - Email: ${email}`;
 
-    function executeCopyAndGo() {
-        const copyText = document.getElementById('textOrderContent');
+        // CHIẾN THUẬT ÉP COPY HỢP LỆ TRÊN MỌI TRÌNH DUYỆT DI ĐỘNG:
+        // Tạo một ô input tạm thời, chọn text và chạy lệnh copy trực tiếp bằng hành động click của người dùng
+        const tempInput = document.createElement("textarea");
+        tempInput.value = orderDetails;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // Hỗ trợ thiết bị di động iOS/Android
         
-        // Chiến thuật quét văn bản kiểu cổ điển -> Bao sân tất cả các loại trình duyệt cấm ngầm trên điện thoại
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); // Dành cho di động iOS/Android
-        
+        let copySuccess = false;
         try {
-            document.execCommand("copy"); // Cưỡng chế lệnh copy thành công bằng hành động click chủ động
+            copySuccess = document.execCommand("copy");
         } catch (err) {
-            // Dự phòng nếu trình duyệt quá cũ
+            copySuccess = false;
+        }
+        document.body.removeChild(tempInput);
+
+        if (copySuccess) {
+            alert("Thông tin đơn hàng đã được tự động copy vào bộ nhớ máy!\n\nBạn bấm OK hệ thống sẽ mở Zalo. Bạn chỉ cần vào phần nhắn tin, giữ màn hình chọn 'DÁN' (Paste) rồi gửi đi là xong!");
+        } else {
+            // Trường hợp trình duyệt bảo mật cực đoan chặn copy ngầm, hệ thống sẽ đưa thông báo thủ công để khách không bị sót thông tin đơn
+            alert(`Vui lòng copy dòng thông tin này trước khi sang Zalo:\n\n${orderDetails}`);
         }
         
-        // Mở Zalo ngay lập tức
+        // Mở Zalo số điện thoại đích
         window.open('https://zalo.me/09397885118', '_blank');
-        document.getElementById('copyPopup').style.display = 'none';
+        closePopup();
     }
 </script>
 </body>
