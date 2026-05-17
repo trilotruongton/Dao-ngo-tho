@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trí Lộ Trường Tồn — Tuyệt Mật Nhân Tính</title>
+    <title>Kinh Thiên Động Đạo</title>
     <style>
         body { margin: 0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: #0b0f15; color: #eee; line-height: 1.6; }
         header { background: #000; color: #fff; padding: 20px; text-align: center; border-bottom: 2px solid #ff3e3e; box-shadow: 0 4px 20px rgba(255, 62, 62, 0.2); }
@@ -38,7 +38,7 @@
 </head>
 <body>
 
-<header><h1>TRÍ LỘ TRƯỜNG TỒN — THẤU THỊ NHÂN TÍNH</h1></header>
+<header><h1>KINH THIÊN ĐỘNG ĐẠO</h1></header>
 
 <main>
     <section class="grid">
@@ -148,7 +148,7 @@
     </div>
 </div>
 
-<footer>© 2026 Trí Lộ Trường Tồn — Kiến tạo tư duy kẻ cầm lái.</footer>
+<footer>© 2026 Kinh Thiên Động Đạo — Kiến tạo tư duy kẻ cầm lái.</footer>
 
 <script>
     let currentBook = ""; let currentPrice = "";
@@ -184,13 +184,12 @@
         // Tạo văn bản thông tin đơn hàng gọn gàng
         const orderDetails = `ĐƠN HÀNG WEB: ${currentBook}\nGiá: ${currentPrice}\nKhách hàng: ${name}\nSĐT: ${phone}\nEmail: ${email}\nVui lòng xác nhận gửi sách cho tôi!`;
         
-        // Cơ chế copy tự động
+        // Cơ chế copy tự động và mở link Zalo đã cập nhật số đúng 0397885118
         navigator.clipboard.writeText(orderDetails).then(() => {
             alert("Đã ghi nhận thông tin! Hệ thống đang mở ứng dụng Zalo. Bạn chỉ cần vào phần nhắn tin, chọn 'Dán' (Paste) rồi gửi đi là xong.");
-            window.open('https://zalo.me/09397885118', '_blank');
+            window.open('https://zalo.me/0397885118', '_blank');
         }).catch(() => {
-            // Trường hợp trình duyệt mobile chặn quyền copy tự động vẫn nhảy thẳng sang Zalo
-            window.open('https://zalo.me/09397885118', '_blank');
+            window.open('https://zalo.me/0397885118', '_blank');
         });
         
         closePopup();
