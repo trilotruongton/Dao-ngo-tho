@@ -26,10 +26,12 @@
         .btn.read { background: #2a3341; color: #fff; }
         .btn.buy { background: #ff3e3e; color: #fff; }
         .btn.buy:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 62, 62, 0.5); }
+        
+        /* CSS POPUP ĐÃ ĐỒNG BỘ MÁY TÍNH & MOBILE */
         #orderPopup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .popup-content { background: #1c2533; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #ff3e3e; text-align: center; position: relative; box-shadow: 0 0 30px rgba(255, 62, 62, 0.3); }
-        .popup-content input { width: 100%; padding: 14px; margin: 8px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; }
-        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; margin-top: 10px; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); transition: 0.3s; }
+        .popup-content { background: #1c2533; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #ff3e3e; text-align: center; position: relative; box-shadow: 0 0 30px rgba(255, 62, 62, 0.3); box-sizing: border-box; }
+        .popup-content input { width: 100%; display: block; padding: 14px; margin: 10px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; font-size: 14px; }
+        .btn-confirm { width: 100%; display: block; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; margin-top: 15px; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4); transition: 0.3s; font-size: 14px; }
         .btn-confirm:hover { background: #cc0000; }
         footer { text-align: center; padding: 50px 20px; font-size: 14px; color: #666; border-top: 1px solid #161c26; }
     </style>
@@ -141,7 +143,7 @@
         
         <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid #2a3341; display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #8892b0; text-align: center;">
             <div><span style="color: #00ff88;">✓</span> Thông tin được bảo mật tuyệt đối</div>
-            <div><span style="color: #00ff88;">✓</span> Hỗ trợ gửi tài liệu trực tiếp qua Zalo & Email</div>
+            <div><span style="color: #00ff88;">✓</span> Chuyển thẳng tới Zalo hỗ trợ nhận sách</div>
         </div>
     </div>
 </div>
@@ -168,28 +170,26 @@
         const phone = document.getElementById('custPhone').value.trim();
         const email = document.getElementById('custEmail').value.trim();
         
-        // 1. Kiểm tra không bỏ trống trường nhập liệu
         if(!name || !phone || !email) { 
             alert("Vui lòng điền đầy đủ thông tin để đặt mua sách!"); 
             return; 
         }
         
-        // 2. Kiểm tra cấu trúc Email hợp chuẩn
         const emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(!emailReg.test(email)) {
             alert("Địa chỉ Email không hợp lệ! Vui lòng kiểm tra lại.");
             return;
         }
 
-        // 3. Chuẩn hóa chuỗi văn bản dữ liệu đơn hàng
+        // Tạo văn bản thông tin đơn hàng gọn gàng
         const orderDetails = `ĐƠN HÀNG WEB: ${currentBook}\nGiá: ${currentPrice}\nKhách hàng: ${name}\nSĐT: ${phone}\nEmail: ${email}\nVui lòng xác nhận gửi sách cho tôi!`;
         
-        // 4. Cơ chế Sao chép tự động lên Clipboard để khách dán ngay khi vào phòng chat Zalo
+        // Cơ chế copy tự động
         navigator.clipboard.writeText(orderDetails).then(() => {
-            alert("Đã ghi nhận thông tin! Hệ thống đang chuyển hướng tới Zalo hỗ trợ. Bạn chỉ cần bấm 'Dán' (Paste) và gửi tin nhắn là xong.");
+            alert("Đã ghi nhận thông tin! Hệ thống đang mở ứng dụng Zalo. Bạn chỉ cần vào phần nhắn tin, chọn 'Dán' (Paste) rồi gửi đi là xong.");
             window.open('https://zalo.me/09397885118', '_blank');
         }).catch(() => {
-            // Dự phòng nếu hệ thống bảo mật trình duyệt mobile chặn quyền copy tự động
+            // Trường hợp trình duyệt mobile chặn quyền copy tự động vẫn nhảy thẳng sang Zalo
             window.open('https://zalo.me/09397885118', '_blank');
         });
         
