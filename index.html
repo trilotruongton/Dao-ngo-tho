@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trí Lộ Trường Tồn — Tuyệt Mật Nhân Tính</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: #0b0f15; color: #eee; line-height: 1.6; }
+        body { margin: 0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: #0b0f15; color: #eee; line-height: 1.6; padding-bottom: 60px; }
         header { background: #000; color: #fff; padding: 20px; text-align: center; border-bottom: 2px solid #ff3e3e; box-shadow: 0 4px 20px rgba(255, 62, 62, 0.2); }
         header h1 { margin: 0; font-size: 22px; letter-spacing: 2px; text-transform: uppercase; }
-        main { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        main { max-width: 1200px; margin: 30px auto; padding: 0 20px; position: relative; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
         .card { background: #161c26; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #2a3341; transition: 0.4s; position: relative; }
         .card:hover { transform: translateY(-12px); border-color: #ff3e3e; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); }
@@ -21,12 +21,20 @@
         .price del { color: #ff4d4d; font-size: 14px; margin-right: 10px; }
         .price strong { color: #00ff88; font-size: 20px; }
         .desc { font-size: 14px; color: #b0b8d1; flex: 1; }
-        .actions { display: flex; gap: 12px; margin-top: 15px; }
+        .actions { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
+        .btn-group { display: flex; gap: 8px; }
         .btn { flex: 1; text-align: center; padding: 12px; border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; font-size: 14px; transition: 0.3s; }
         .btn.read { background: #2a3341; color: #fff; }
-        .btn.buy { background: #ff3e3e; color: #fff; }
+        .btn.add-cart { background: #00ff88; color: #0b0f15; }
+        .btn.add-cart:hover { background: #00cc6e; }
+        .btn.buy { background: #ff3e3e; color: #fff; width: 100%; }
         .btn.buy:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 62, 62, 0.5); }
         
+        /* ICON GIỎ HÀNG NỔI (STYLE SHOPEE) */
+        .floating-cart { position: fixed; bottom: 30px; right: 30px; background: #ff3e3e; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 20px rgba(255, 62, 62, 0.4); z-index: 999; font-size: 24px; transition: 0.3s; }
+        .floating-cart:hover { transform: scale(1.1); }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: #00ff88; color: #0b0f15; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #0b0f15; }
+
         .support-box { background: #161c26; border-left: 4px solid #ff3e3e; padding: 20px; border-radius: 8px; margin-top: 50px; border-top: 1px solid #2a3341; border-right: 1px solid #2a3341; border-bottom: 1px solid #2a3341; }
         .support-box h3 { margin: 0 0 10px 0; color: #fff; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
         .support-box p { margin: 5px 0; font-size: 14px; color: #b0b8d1; }
@@ -35,13 +43,19 @@
 
         /* POPUP CHUNG */
         #orderPopup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .popup-content { background: #1c2533; padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; border: 1px solid #ff3e3e; text-align: center; box-sizing: border-box; }
-        .popup-content input { width: 100%; padding: 14px; margin: 12px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; }
-        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 14px; }
+        .popup-content { background: #1c2533; padding: 25px; border-radius: 15px; width: 95%; max-width: 420px; border: 1px solid #ff3e3e; text-align: center; box-sizing: border-box; max-height: 90vh; overflow-y: auto; }
+        .popup-content input { width: 100%; padding: 14px; margin: 8px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; }
+        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 14px; margin-top: 10px; }
         
+        /* DANH SÁCH SÁCH TRONG GIỎ HÀNG TẠI POPUP */
+        .cart-summary { background: #0b0f15; border-radius: 8px; padding: 12px; margin: 15px 0; text-align: left; border: 1px solid #2a3341; }
+        .cart-item-line { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px dashed #2a3341; }
+        .cart-item-line:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .cart-total-line { display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; color: #00ff88; margin-top: 10px; padding-top: 5px; border-top: 1px solid #2a3341; }
+
         /* KHUNG VIETQR */
         .qr-container { display: none; text-align: center; margin-top: 15px; background: #fff; padding: 15px; border-radius: 10px; color: #333; }
-        .qr-container img { max-width: 220px; width: 100%; height: auto; display: block; margin: 0 auto 10px; }
+        .qr-container img { max-width: 210px; width: 100%; height: auto; display: block; margin: 0 auto 10px; }
         .qr-container p { margin: 4px 0; font-size: 13px; font-weight: 600; color: #222; }
         .qr-container .notice { color: #ff3e3e; font-size: 12px; margin-top: 8px; font-style: italic; }
 
@@ -60,8 +74,11 @@
                 <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
                 <p class="desc">Bóc tách sơ đồ mạch điện của nhân tính. Đừng để bị vận hành như một linh kiện.</p>
                 <div class="actions">
-                    <a class="btn read" href="doc-thu.html?sach=tuyet-mat-nhan-tinh">📖 Đọc thử</a>
-                    <button class="btn buy" onclick="openPopup('Tuyệt Mật Nhân Tính', '90.000đ')">💬 Đặt mua</button>
+                    <div class="btn-group">
+                        <a class="btn read" href="doc-thu.html?sach=tuyet-mat-nhan-tinh">📖 Đọc thử</a>
+                        <button class="btn add-cart" onclick="addToCart('Tuyệt Mật Nhân Tính', 90000)">🛒 + Giỏ</button>
+                    </div>
+                    <button class="btn buy" onclick="buyNow('Tuyệt Mật Nhân Tính', 90000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -73,8 +90,11 @@
                 <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
                 <p class="desc">Nhìn thấu mặt sáng – tối của con người trong các mối quan hệ thực dụng.</p>
                 <div class="actions">
-                    <a class="btn read" href="doc-thu.html?sach=nhan-tinh-den-trang">📖 Đọc thử</a>
-                    <button class="btn buy" onclick="openPopup('Nhân Tính Đen Trắng', '90.000đ')">💬 Đặt mua</button>
+                    <div class="btn-group">
+                        <a class="btn read" href="doc-thu.html?sach=nhan-tinh-den-trang">📖 Đọc thử</a>
+                        <button class="btn add-cart" onclick="addToCart('Nhân Tính Đen Trắng', 90000)">🛒 + Giỏ</button>
+                    </div>
+                    <button class="btn buy" onclick="buyNow('Nhân Tính Đen Trắng', 90000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -86,8 +106,11 @@
                 <div class="price"><del>200.000đ</del> → <strong>150.000đ</strong></div>
                 <p class="desc">Rèn luyện tư duy chiều sâu, thoát khỏi sự thao túng của suy nghĩ bề mặt.</p>
                 <div class="actions">
-                    <a class="btn read" href="doc-thu.html?sach=tu-duy-sau-sac">📖 Đọc thử</a>
-                    <button class="btn buy" onclick="openPopup('Tư Duy Sâu Sắc', '150.000đ')">💬 Đặt mua</button>
+                    <div class="btn-group">
+                        <a class="btn read" href="doc-thu.html?sach=tu-duy-sau-sac">📖 Đọc thử</a>
+                        <button class="btn add-cart" onclick="addToCart('Tư Duy Sâu Sắc', 150000)">🛒 + Giỏ</button>
+                    </div>
+                    <button class="btn buy" onclick="buyNow('Tư Duy Sâu Sắc', 150000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -99,8 +122,11 @@
                 <div class="price"><del>170.000đ</del> → <strong>120.000đ</strong></div>
                 <p class="desc">38 ván cờ thao túng và đọc vị thế cuộc đời. Dành cho kẻ muốn cầm lái.</p>
                 <div class="actions">
-                    <a class="btn read" href="doc-thu.html?sach=thien-co-38-cuc">📖 Đọc thử</a>
-                    <button class="btn buy" onclick="openPopup('Thiên Cơ 38 Cục', '120.000đ')">💬 Đặt mua</button>
+                    <div class="btn-group">
+                        <a class="btn read" href="doc-thu.html?sach=thien-co-38-cuc">📖 Đọc thử</a>
+                        <button class="btn add-cart" onclick="addToCart('Thiên Cơ 38 Cục', 120000)">🛒 + Giỏ</button>
+                    </div>
+                    <button class="btn buy" onclick="buyNow('Thiên Cơ 38 Cục', 120000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -112,8 +138,11 @@
                 <div class="price"><del>170.000đ</del> → <strong>100.000đ</strong></div>
                 <p class="desc">Nhận diện những bẫy tư duy xích chân con người mãi ở tầng thấp.</p>
                 <div class="actions">
-                    <a class="btn read" href="doc-thu.html?sach=logic-nguoi-ngheo">📖 Đọc thử</a>
-                    <button class="btn buy" onclick="openPopup('Logic Người Nghèo', '100.000đ')">💬 Đặt mua</button>
+                    <div class="btn-group">
+                        <a class="btn read" href="doc-thu.html?sach=logic-nguoi-ngheo">📖 Đọc thử</a>
+                        <button class="btn add-cart" onclick="addToCart('Logic Người Nghèo', 100000)">🛒 + Giỏ</button>
+                    </div>
+                    <button class="btn buy" onclick="buyNow('Logic Người Nghèo', 100000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -125,8 +154,11 @@
                 <div class="price"><del>120.000đ</del> → <strong>90.000đ</strong></div>
                 <p class="desc">Góc nhìn sắc bén và hệ tư tưởng phản tỉnh đời sống thực tại.</p>
                 <div class="actions">
-                    <a class="btn read" href="doc-thu.html?sach=kiem-dai">📖 Đọc thử</a>
-                    <button class="btn buy" onclick="openPopup('Kiếm Đại', '90.000đ')">💬 Đặt mua</button>
+                    <div class="btn-group">
+                        <a class="btn read" href="doc-thu.html?sach=kiem-dai">📖 Đọc thử</a>
+                        <button class="btn add-cart" onclick="addToCart('Kiếm Đại', 90000)">🛒 + Giỏ</button>
+                    </div>
+                    <button class="btn buy" onclick="buyNow('Kiếm Đại', 90000)">⚡ Mua Ngay</button>
                 </div>
             </div>
         </article>
@@ -134,31 +166,39 @@
 
     <section class="support-box">
         <h3>💡 Gợi ý dành cho Độc giả</h3>
-        <p>• Sau khi điền thông tin và bấm <strong>"Xác Nhận Đặt Mua"</strong>, hệ thống sẽ hiển thị mã VietQR tự động điền sẵn số tiền để bạn quét thanh toán nhanh chóng.</p>
-        <p>• Đồng thời, hệ thống tự động soạn sẵn thông tin và chuyển bạn sang ô chat Messenger. Bạn chỉ cần bấm nút <strong>GỬI</strong> để hoàn tất lưu thông tin nhận sách.</p>
-        <p>• Nếu gặp bất kỳ vấn đề gì (không hiển thị mã QR, điền nhầm thông tin đơn hàng), vui lòng liên hệ trực tiếp qua Hotline hoặc Zalo: <a href="tel:0397885118"><strong>0397885118</strong></a> để được hỗ trợ ngay lập tức.</p>
+        <p>• Bạn có thể bấm nút <strong>"🛒 + Giỏ"</strong> để gom nhiều cuốn sách khác nhau vào đơn hàng trước khi tiến hành thanh toán gộp một lần như Shopee.</p>
+        <p>• Sau khi điền thông tin, hệ thống hiển thị mã VietQR tự động điền sẵn tổng số tiền tất cả các cuốn sách bạn chọn.</p>
+        <p>• Hệ thống sẽ tự động soạn sẵn thông tin chi tiết đơn hàng chuyển bạn sang ô chat Messenger. Vui lòng bấm nút <strong>GỬI</strong> để hoàn tất.</p>
+        <p>• Hotline/Zalo hỗ trợ: <a href="tel:0397885118"><strong>0397885118</strong></a>.</p>
     </section>
 </main>
 
+<div class="floating-cart" onclick="openCartPopup()">
+    🛒
+    <div class="cart-count" id="cartCount">0</div>
+</div>
+
 <div id="orderPopup">
     <div class="popup-content">
-        <h3 id="bookNameDisplay">Tên sách</h3>
-        <p id="bookPriceDisplay" style="color: #00ff88; font-weight: bold; margin-bottom: 5px;"></p>
+        <h3 style="margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px;">Thông Tin Đơn Hàng</h3>
+        
+        <div class="cart-summary" id="cartSummaryList">
+            </div>
         
         <div id="popupForm">
             <input type="text" id="custName" placeholder="Tên của bạn..." required>
             <input type="tel" id="custPhone" placeholder="Số điện thoại Zalo..." required>
             <input type="email" id="custEmail" placeholder="Địa chỉ Email của bạn..." required>
-            <button class="btn-confirm" onclick="generateVietQR()">Xác Nhận Đặt Mua</button>
-            <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline; display:block; width:100%;">Bỏ qua</button>
+            <button class="btn-confirm" onclick="processCheckout()">Xác Nhận Đặt Mua</button>
+            <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline; display:block; width:100%;">Quay lại chọn tiếp</button>
         </div>
 
         <div id="qrSection" class="qr-container">
-            <p style="color:#ff3e3e; font-size:15px; margin-bottom:8px;">Mã Thanh Toán Của Bạn</p>
-            <img id="vietQrImage" src="" alt="Mã VietQR Thanh Toán">
+            <p style="color:#ff3e3e; font-size:15px; margin-bottom:8px; font-weight: bold;">MÃ QUÉT THANH TOÁN GỘP</p>
+            <img id="vietQrImage" src="" alt="Mã VietQR Thanh Toán Tổng">
             <p id="qrInfoAmount"></p>
             <p id="qrInfoContent" style="font-size:11px; color:#555; background:#f4f5f7; padding:4px; border-radius:4px; word-break:break-all;"></p>
-            <p class="notice">Đang chuyển tiếp sang Messenger sau vài giây...</p>
+            <p class="notice">Đang mở trình duyệt chuyển tiếp sang Messenger...</p>
         </div>
     </div>
 </div>
@@ -166,62 +206,128 @@
 <footer>© 2026 Trí Lộ Trường Tồn — Kiến tạo tư duy kẻ cầm lái.</footer>
 
 <script>
-    let currentBook = ""; let currentPrice = "";
+    // Mảng lưu trữ danh sách mặt hàng trong giỏ
+    let cart = [];
     
-    // --- THÔNG TIN TÀI KHOẢN NGÂN HÀNG ĐÃ ĐƯỢC CẬP NHẬT HOÀN CHỈNH ---
+    // --- CẤU HÌNH NGÂN HÀNG CỦA BẠN VANG A SONG ---
     const NGAN_HANG = "vietcombank"; 
     const STK       = "1054523832";  
     const TEN_CTK   = "VANG A SONG"; 
     // -----------------------------------------------------------------
 
-    function openPopup(name, price) { 
-        currentBook = name; 
-        currentPrice = price; 
-        document.getElementById('bookNameDisplay').innerText = name; 
-        document.getElementById('bookPriceDisplay').innerText = "Giá: " + price; 
+    // Hàm định dạng tiền tệ dạng hiển thị (Ví dụ: 180000 -> 180.000đ)
+    function formatMoney(num) {
+        return num.toLocaleString('vi-VN') + "đ";
+    }
+
+    // 1. Thêm sản phẩm vào giỏ hàng (Kiểu Shopee)
+    function addToCart(bookName, price) {
+        // Kiểm tra xem cuốn sách này đã được thêm chưa để tránh trùng lặp
+        const existing = cart.find(item => item.name === bookName);
+        if (!existing) {
+            cart.push({ name: bookName, price: price });
+            alert(`Đã thêm "${bookName}" vào giỏ hàng!`);
+            updateCartCount();
+        } else {
+            alert("Cuốn sách này đã có sẵn trong giỏ hàng của bạn rồi!");
+        }
+    }
+
+    // Cập nhật số hiển thị trên icon giỏ hàng nổi
+    function updateCartCount() {
+        document.getElementById('cartCount').innerText = cart.length;
+    }
+
+    // 2. Chức năng Mua ngay (Xóa hết giỏ cũ, thêm duy nhất cuốn này rồi mở popup luôn)
+    function buyNow(bookName, price) {
+        cart = [{ name: bookName, price: price }];
+        updateCartCount();
+        openCartPopup();
+    }
+
+    // 3. Mở popup hiển thị tổng thể đơn hàng để nhập thông tin
+    function openCartPopup() {
+        if (cart.length === 0) {
+            alert("Giỏ hàng của bạn đang trống! Vui lòng chọn sách trước.");
+            return;
+        }
+
+        let html = "";
+        let total = 0;
+        
+        // Vòng lặp kết xuất danh sách sách ra giao diện popup
+        cart.forEach((item, index) => {
+            html += `<div class="cart-item-line">
+                        <span>${index + 1}. ${item.name}</span>
+                        <strong>${formatMoney(item.price)}</strong>
+                     </div>`;
+            total += item.price;
+        });
+        
+        html += `<div class="cart-total-line">
+                    <span>TỔNG THANH TOÁN:</span>
+                    <span>${formatMoney(total)}</span>
+                 </div>`;
+                 
+        document.getElementById('cartSummaryList').innerHTML = html;
+        
+        // Reset giao diện popup về trạng thái điền form ban đầu
         document.getElementById('popupForm').style.display = 'block';
         document.getElementById('qrSection').style.display = 'none';
-        document.getElementById('orderPopup').style.display = 'flex'; 
+        document.getElementById('orderPopup').style.display = 'flex';
     }
     
     function closePopup() { 
         document.getElementById('orderPopup').style.display = 'none'; 
     }
     
-    function generateVietQR() {
+    // 4. Xử lý tạo cổng QR gộp và đẩy dữ liệu liên kết Messenger
+    function processCheckout() {
         const name = document.getElementById('custName').value.trim(); 
         const phone = document.getElementById('custPhone').value.trim();
         const email = document.getElementById('custEmail').value.trim();
         
-        if(!name || !phone || !email) { alert("Vui lòng điền đủ thông tin!"); return; }
+        if(!name || !phone || !email) { alert("Vui lòng điền đủ thông tin để nhận sách!"); return; }
         
-        // Chuyển chuỗi giá tiền "90.000đ" -> số nguyên sạch 90000 để đưa vào API VietQR
-        const amountNumber = parseInt(currentPrice.replace(/[^0-9]/g, ''));
+        let totalAmount = 0;
+        let bookNamesArray = [];
         
-        // Tạo nội dung chuyển khoản tự động (SĐT khách + Tên Sách viết liền không dấu)
-        const cleanBookName = currentBook.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/[^a-zA-Z0-9]/g, "");
-        const transferContent = `${phone} mua ${cleanBookName}`;
+        cart.forEach(item => {
+            totalAmount += item.price;
+            // Chuyển tên sách thành dạng viết liền không dấu ngắn gọn để ghép nội dung CK
+            let shortName = item.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/[^a-zA-Z0-9]/g, "");
+            bookNamesArray.push(shortName);
+        });
 
-        // Gọi API tạo link ảnh VietQR chuẩn mẫu quick-link
-        const vietQrUrl = `https://img.vietqr.io/image/${NGAN_HANG}-${STK}-compact2.png?amount=${amountNumber}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(TEN_CTK)}`;
+        // Tạo chuỗi nội dung chuyển khoản gộp (Ví dụ: 0397885118 mua TuyetMatNhanTinh NhanTinhDenTrang)
+        const transferContent = `${phone} mua ${bookNamesArray.join(" ")}`.substring(0, 50); // Giới hạn ký tự tránh lỗi chuỗi QR quá dài
+
+        // Tạo link ảnh VietQR gộp tổng tiền của tất cả các cuốn sách được chọn
+        const vietQrUrl = `https://img.vietqr.io/image/${NGAN_HANG}-${STK}-compact2.png?amount=${totalAmount}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(TEN_CTK)}`;
         
-        // Hiển thị mã QR lên giao diện popup
+        // Cập nhật hiển thị mã QR gộp lên màn hình
         document.getElementById('vietQrImage').src = vietQrUrl;
-        document.getElementById('qrInfoAmount').innerHTML = `Số tiền: <strong style="color:#00ff88;font-size:16px;">${currentPrice}</strong>`;
-        document.getElementById('qrInfoContent').innerHTML = `Nội dung: <strong>${transferContent}</strong>`;
+        document.getElementById('qrInfoAmount').innerHTML = `Tổng số tiền: <strong style="color:#00ff88;font-size:18px;">${formatMoney(totalAmount)}</strong>`;
+        document.getElementById('qrInfoContent').innerHTML = `Nội dung CK bắt buộc: <strong>${transferContent}</strong>`;
         
-        // Ẩn form nhập dữ liệu, hiện khung chứa mã QR
         document.getElementById('popupForm').style.display = 'none';
         document.getElementById('qrSection').style.display = 'block';
 
-        // Chuẩn bị sẵn nội dung tin nhắn gửi sang Messenger của bạn
-        const message = `ĐƠN HÀNG MỚI WEB:%0A------------------%0A📖 Sách: ${currentBook}%0A💰 Giá: ${currentPrice}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A------------------%0A%0AĐã ghi nhận yêu cầu.%0AĐể nhận file ebooks hoàn chỉnh, b vui lòng hoàn tất thanh toán theo thông tin mã QR hiển thị trên màn hình.%0A%0A🏦 Ngân hàng: ${NGAN_HANG.toUpperCase()}%0A💳 Số tài khoản: ${STK}%0A👤 Chủ tài khoản: ${TEN_CTK}%0A💰 Số tiền: ${currentPrice}%0A📝 Nội dung CK: ${transferContent}%0A%0AHệ thống sẽ kiểm tra và gửi file cho b ngay sau khi nhận được chuyển khoản!`;
+        // Biên soạn văn bản chi tiết đơn hàng gộp để chuyển sang Messenger
+        let listBooksText = "";
+        cart.forEach((item, index) => {
+            listBooksText += `📖 ${index + 1}. ${item.name} (${formatMoney(item.price)})%0A`;
+        });
 
-        // Đợi 3 giây để khách kịp chụp màn hình mã QR rồi tự động kích hoạt nhảy sang Messenger
+        const message = `ĐƠN HÀNG MỚI WEB (GIỎ HÀNG MULTI):%0A------------------%0A${listBooksText}💰 Tổng thanh toán: ${formatMoney(totalAmount)}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A------------------%0A%0AĐã ghi nhận yêu cầu.%0AĐể nhận file ebooks hoàn chỉnh, b vui lòng thanh toán theo mã QR tổng hiển thị trên màn hình.%0A%0A🏦 Ngân hàng: ${NGAN_HANG.toUpperCase()}%0A💳 Số tài khoản: ${STK}%0A👤 Chủ tài khoản: ${TEN_CTK}%0A💰 Tổng tiền: ${formatMoney(totalAmount)}%0A📝 Nội dung CK: ${transferContent}%0A%0AHệ thống sẽ đối soát đơn hàng và gửi file qua Messenger/Email cho b ngay lập tức!`;
+
+        // Chờ 4 giây để khách kịp xem tổng tiền hoặc chụp màn hình QR rồi tự động bật ứng dụng Messenger chat với Page
         setTimeout(() => {
             window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
             closePopup();
-        }, 3000);
+            cart = []; // Làm trống giỏ hàng sau khi đã gửi đơn đi thành công
+            updateCartCount();
+        }, 4000);
     }
 </script>
 </body>
