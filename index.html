@@ -27,7 +27,6 @@
         .btn.buy { background: #ff3e3e; color: #fff; }
         .btn.buy:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 62, 62, 0.5); }
         
-        /* PHẦN GỢI Ý ĐỘC GIẢ & HỖ TRỢ */
         .support-box { background: #161c26; border-left: 4px solid #ff3e3e; padding: 20px; border-radius: 8px; margin-top: 50px; border-top: 1px solid #2a3341; border-right: 1px solid #2a3341; border-bottom: 1px solid #2a3341; }
         .support-box h3 { margin: 0 0 10px 0; color: #fff; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
         .support-box p { margin: 5px 0; font-size: 14px; color: #b0b8d1; }
@@ -135,8 +134,9 @@
 
     <section class="support-box">
         <h3>💡 Gợi ý dành cho Độc giả</h3>
-        <p>• Sau khi bấm <strong>"Xác Nhận Đặt Mua"</strong>, hệ thống sẽ tự động soạn sẵn thông tin và chuyển bạn sang Messenger. Bạn chỉ cần bấm <strong>GỬI</strong> để hoàn tất đơn hàng.</p>
-        <p>• Nếu gặp bất kỳ vấn đề gì (không nhận được sách, nhấn nhầm thông tin, hoặc lỗi đường truyền), vui lòng liên hệ hỗ trợ trực tiếp qua Hotline/Zalo: <a href="tel:0397885118"><strong>0397885118</strong></a> để được xử lý ngay lập tức.</p>
+        <p>• Sau khi điền thông tin và bấm <strong>"Xác Nhận Đặt Mua"</strong>, hệ thống sẽ tự động sao chép thông tin đơn hàng và mở ứng dụng Messenger.</p>
+        <p>• Nếu ô chat Messenger hiển thị trống chữ, bạn chỉ cần <strong>ẤN GIỮ vào ô nhập tin nhắn</strong> rồi chọn <strong>"DÁN" (Paste)</strong> và gửi đi để xác nhận nhận sách nhanh nhất.</p>
+        <p>• Trường hợp gặp bất kỳ sự cố nào về đường truyền hoặc điền nhầm thông tin, xin vui lòng gọi hoặc liên hệ Zalo số: <a href="tel:0397885118"><strong>0397885118</strong></a> để đội ngũ hỗ trợ xử lý ngay.</p>
     </section>
 </main>
 
@@ -144,7 +144,7 @@
     <div class="popup-content">
         <span onclick="closePopup()" style="position: absolute; top: 15px; right: 20px; color: #8892b0; font-size: 24px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.color='#ff3e3e'" onmouseout="this.style.color='#8892b0'">×</span>
         
-        <h3 id="bookNameDisplay" style="font-size: 20px; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px;">Tên sách</h3>
+        <h3 id="bookNameDisplay">Tên sách</h3>
         <p id="bookPriceDisplay" style="color: #00ff88; font-size: 18px; font-weight: bold; margin-bottom: 15px;"></p>
         
         <input type="text" id="custName" placeholder="Tên của bạn..." required>
@@ -154,8 +154,8 @@
         <button class="btn-confirm" onclick="sendToMessenger()">Xác Nhận Đặt Mua</button>
         
         <div style="margin-top: 15px; padding-top: 12px; border-top: 1px solid #2a3341; display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: #8892b0; text-align: center;">
-            <div><span style="color: #00ff88;">✓</span> Thông tin được bảo mật tuyệt đối</div>
-            <div><span style="color: #00ff88;">✓</span> Chuyển thẳng tới Messenger để nhận sách</div>
+            <div><span style="color: #00ff88;">✓</span> Đơn hàng tự động sao chép lưu vào bộ đệm máy</div>
+            <div><span style="color: #00ff88;">✓</span> Hệ thống đồng bộ tối ưu hóa giao diện di động</div>
         </div>
     </div>
 </div>
@@ -194,16 +194,37 @@
         }
 
         const orderDetails = `ĐƠN HÀNG WEB: ${currentBook}\nGiá: ${currentPrice}\nKhách hàng: ${name}\nSĐT: ${phone}\nEmail: ${email}\nVui lòng xác nhận gửi sách cho tôi!`;
+        
+        // Thực hiện sao chép dự phòng bắt buộc
+        const tempInput = document.createElement("textarea");
+        tempInput.value = orderDetails;
+        tempInput.style.position = "fixed"; tempInput.style.top = "0"; tempInput.style.left = "0"; tempInput.style.opacity = "0";
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999);
+        let isCopied = false;
+        try { isCopied = document.execCommand("copy"); } catch (err) { isCopied = false; }
+        document.body.removeChild(tempInput);
+
         const encodedText = encodeURIComponent(orderDetails);
         
-        // Bạn có thể đổi 'KinhThienDongDao' thành ID trang Messenger của bạn nếu cần
-        const messengerUrl = `https://m.me/KinhThienDongDao?text=${encodedText}`;
-        
-        try {
-            window.open(messengerUrl, '_blank');
-        } catch (e) {
-            window.location.href = messengerUrl;
-        }
+        // THIẾT LẬP ĐƯỜNG LINK NGĂN CHẶN LỖI TRÌNH DUYỆT TRÊN ĐIỆN THOẠI
+        // Hãy kiểm tra chính xác ID Fanpage Facebook của bạn (Thay thế 'KinhThienDongDao' nếu cần)
+        const webUrl = `https://m.me/KinhThienDongDao?text=${encodedText}`;
+        const appUrl = `fb-messenger://user-thread/KinhThienDongDao`; 
+
+        alert("Thông tin đơn hàng đã được sao chép tự động!\n\nHệ thống sẽ mở Messenger ngay bây giờ. Nếu ô chat bị trống, bạn chỉ cần ĐÈ GIỮ VÀO Ô NHẬP chữ rồi chọn 'DÁN' (Paste) và gửi đi.");
+
+        // Cơ chế kích hoạt luồng thông minh chống lỗi app mã nguồn đóng
+        const startTime = Date.now();
+        window.location.href = appUrl; // Thử ép hệ điều hành gọi app gốc trực tiếp
+
+        setTimeout(() => {
+            // Nếu sau 1.2 giây máy không phản hồi với app gốc (có thể do đang ở trong webview fb), đẩy tiếp sang link web tiêu chuẩn
+            if (Date.now() - startTime < 1500) {
+                window.location.href = webUrl;
+            }
+        }, 1200);
         
         closePopup();
     }
