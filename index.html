@@ -81,6 +81,23 @@
 
     <section class="grid">
         <article class="card">
+            <div class="thumb" style="background-image:url('kinh-thien.jpg')"></div>
+            <div class="info">
+                <h2 class="title">Kinh Thiên</h2>
+                <div class="author">Xuyên Thấu Nhân Tính</div>
+                <div class="price"><del>350.000đ</del> → <strong>299.000đ</strong></div>
+                <p class="desc">Bản lĩnh tối cao điều khiển cục diện. Tư duy đột phá giúp bạn làm chủ mọi cuộc chơi lớn nhỏ.</p>
+                <div class="actions">
+                    <div class="btn-group">
+                        <a class="btn read" href="doc-thu.html?sach=kinh-thien">📖 Đọc thử</a>
+                        <button class="btn add-cart" onclick="addToCart('Kinh Thiên', 299000)">🛒 + Giỏ</button>
+                    </div>
+                    <button class="btn buy" onclick="buyNow('Kinh Thiên', 299000)">⚡ Mua Ngay</button>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
             <div class="thumb" style="background-image:url('images/tuyet-mat-nhan-tinh.jpg')"></div>
             <div class="info">
                 <h2 class="title">Tuyệt Mật Nhân Tính</h2>
@@ -96,6 +113,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/nhan-tinh-den-trang.jpg')"></div>
             <div class="info">
@@ -112,6 +130,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/tu-duy-sau-sac.jpg')"></div>
             <div class="info">
@@ -128,6 +147,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/thien-co-38-cuc.jpg')"></div>
             <div class="info">
@@ -144,6 +164,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/logic-nguoi-ngheo.jpg')"></div>
             <div class="info">
@@ -160,6 +181,7 @@
                 </div>
             </div>
         </article>
+
         <article class="card">
             <div class="thumb" style="background-image:url('images/kiem-dai.jpg')"></div>
             <div class="info">
@@ -365,13 +387,13 @@
 
         const message = `ĐƠN HÀNG MỚI WEB (GIỎ HÀNG MULTI):%0A------------------%0A${listBooksText}💰 Tổng thanh toán: ${formatMoney(totalAmount)}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A🎁 QUÀ TẶNG KÈM: ${giftText}%0A------------------%0A%0AĐã ghi nhận yêu cầu.%0AĐể nhận file ebooks hoàn chỉnh + Quà tặng (nếu có), b vui lòng thanh toán theo mã QR tổng hiển thị trên màn hình.%0A%0A🏦 Ngân hàng: ${NGAN_HANG.toUpperCase()}%0A💳 Số tài khoản: ${STK}%0A👤 Chủ tài khoản: ${TEN_CTK}%0A💰 Tổng tiền: ${formatMoney(totalAmount)}%0A📝 Nội dung CK: ${transferContent}%0A%0AHệ thống sẽ đối soát đơn hàng và gửi file qua Messenger/Email cho b ngay lập tức!`;
 
-       // Đợi 60 giây (1 phút) cho khách kịp quét/chụp màn hình rồi mở Messenger tự động
-    setTimeout(() => {
-    window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
-    closePopup();
-    cart = []; 
-    updateCartCount();
-}, 60000); // <--- Đã sửa thành 60000 (tức là đúng 1 phút)
+        // Đợi 60 giây (1 phút) cho khách kịp quét/chụp màn hình rồi mở Messenger tự động
+        setTimeout(() => {
+            window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
+            closePopup();
+            cart = []; 
+            updateCartCount();
+        }, 60000);
     }
 </script>
 </body>
