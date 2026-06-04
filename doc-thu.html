@@ -15,7 +15,7 @@
         
         .book { background: #161c26; padding: 25px; border-radius: 12px; border: 1px solid #2a3341; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .book-info { display: flex; gap: 20px; margin-bottom: 20px; align-items: center; }
-        .book img { width: 120px; border-radius: 8px; border: 1px solid #3d495d; }
+        .book img { width: 120px; border-radius: 8px; border: 1px solid #3d495d; object-fit: cover; }
         
         h1 { margin: 0; font-size: 24px; color: #fff; }
         .price { color: #00ff88; font-size: 18px; font-weight: bold; margin: 10px 0; }
@@ -46,6 +46,7 @@
         .btn.buy { background: #ff3e3e; color: #fff; }
         .btn.buy:hover { background: #cc0000; box-shadow: 0 5px 15px rgba(255, 62, 62, 0.4); }
         .btn.full-view { background: #2a3341; color: #fff; border: 1px solid #3d495d; }
+        .btn.full-view:hover { background: #3d495d; }
 
         /* THÔNG BÁO DÀNH RIÊNG CHO MOBILE */
         .mobile-tip {
@@ -87,18 +88,24 @@
         </div>
 
         <div class="pdf-wrapper">
-            <iframe id="pdf"></iframe>
+            <iframe id="pdf" title="Trình xem thử sách PDF"></iframe>
         </div>
 
         <div class="actions">
-            <a class="btn full-view" id="full-view-btn" target="_blank">🔍 Xem toàn màn hình</a>
-            <a class="btn buy" id="buy-btn" target="_blank">💬 Nhận bản đầy đủ</a>
+            <a class="btn full-view" id="full-view-btn" target="_blank" rel="noopener">🔍 Xem toàn màn hình</a>
+            <a class="btn buy" id="buy-btn" target="_blank" rel="noopener">💬 Nhận bản đầy đủ</a>
         </div>
     </div>
 </main>
 
 <script>
     const books = {
+        "kinh-thien": {
+            title: "Kinh Thiên",
+            price: "120.000đ", /* Bạn có thể tự sửa lại giá tiền hiển thị tại đây */
+            img: "images/kinh-thien.jpg", /* Đảm bảo bạn đã lưu ảnh bìa tên là kinh-thien.jpg vào thư mục images */
+            pdf: "previews/ban-doc-thu-kinh-thien.pdf" /* Đường dẫn tương đối đến tệp bạn vừa upload lên GitHub */
+        },
         "tuyet-mat-nhan-tinh": {
             title: "Tuyệt Mật Nhân Tính",
             price: "0đ (Sách tặng)",
@@ -147,11 +154,11 @@
         document.getElementById("title").textContent = book.title;
         document.getElementById("price").textContent = "Giá: " + book.price;
         document.getElementById("img").src = book.img;
+        document.getElementById("img").alt = "Bìa sách " + book.title;
         document.getElementById("full-view-btn").href = book.pdf;
 
-        // Xử lý hiển thị PDF qua Google Viewer để hỗ trợ Mobile cuộn mượt
-        // URL tuyệt đối cần thiết để Google Viewer hoạt động
-        const absolutePdfUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/') + book.pdf;
+        // Xử lý hiển thị PDF qua Google Viewer bằng đối tượng URL an toàn
+        const absolutePdfUrl = new URL(book.pdf, window.location.href).href;
         document.getElementById("pdf").src = "https://docs.google.com/viewer?url=" + encodeURIComponent(absolutePdfUrl) + "&embedded=true";
 
         // Cập nhật link Messenger
