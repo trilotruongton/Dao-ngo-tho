@@ -20,65 +20,39 @@
         .price { margin: 5px 0; }
         .price del { color: #ff4d4d; font-size: 14px; margin-right: 10px; }
         .price strong { color: #00ff88; font-size: 20px; }
-        .desc { font-size: 14px; color: #b0b8d1; flex: 1; }
+        
+        /* CẤU HÌNH THU GỌN MÔ TẢ */
+        .desc { font-size: 14px; color: #b0b8d1; flex: 1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; cursor: pointer; transition: 0.3s; }
+        .desc:hover { color: #fff; }
+        .desc.full { -webkit-line-clamp: unset; }
+
         .actions { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
         .btn-group { display: flex; gap: 8px; }
         .btn { flex: 1; text-align: center; padding: 12px; border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; font-size: 14px; transition: 0.3s; }
         .btn.read { background: #2a3341; color: #fff; }
         .btn.add-cart { background: #00ff88; color: #0b0f15; }
-        .btn.add-cart:hover { background: #00cc6e; }
         .btn.buy { background: #ff3e3e; color: #fff; width: 100%; }
-        .btn.buy:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 62, 62, 0.5); }
         
-        /* ICON GIỎ HÀNG NỔI (STYLE SHOPEE) */
         .floating-cart { position: fixed; bottom: 30px; right: 30px; background: #ff3e3e; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 20px rgba(255, 62, 62, 0.4); z-index: 999; font-size: 24px; transition: 0.3s; }
-        .floating-cart:hover { transform: scale(1.1); }
         .cart-count { position: absolute; top: -5px; right: -5px; background: #00ff88; color: #0b0f15; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #0b0f15; }
-
-        /* KHUNG CHƯƠNG TRÌNH KHUYẾN MÃI TRÊN WEB */
-        .promo-banner { background: linear-gradient(135deg, #ff3e3e, #b30000); padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 25px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.3); border: 1px solid #ff6666; }
-
-        .support-box { background: #161c26; border-left: 4px solid #ff3e3e; padding: 20px; border-radius: 8px; margin-top: 50px; border-top: 1px solid #2a3341; border-right: 1px solid #2a3341; border-bottom: 1px solid #2a3341; }
-        .support-box h3 { margin: 0 0 10px 0; color: #fff; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; }
-        .support-box p { margin: 5px 0; font-size: 14px; color: #b0b8d1; }
-        .support-box a { color: #00ff88; text-decoration: none; font-weight: bold; }
-        .support-box a:hover { text-decoration: underline; }
-
-        /* POPUP CHUNG */
-        #orderPopup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .popup-content { background: #1c2533; padding: 25px; border-radius: 15px; width: 95%; max-width: 420px; border: 1px solid #ff3e3e; text-align: center; box-sizing: border-box; max-height: 90vh; overflow-y: auto; }
-        .popup-content input { width: 100%; padding: 14px; margin: 8px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; box-sizing: border-box; }
-        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 14px; margin-top: 10px; }
-        
-        /* DANH SÁCH SÁCH TRONG GIỎ HÀNG TẠI POPUP */
+        .promo-banner { background: linear-gradient(135deg, #ff3e3e, #b30000); padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 25px; font-weight: bold; }
+        .support-box { background: #161c26; border-left: 4px solid #ff3e3e; padding: 20px; border-radius: 8px; margin-top: 50px; }
+        #orderPopup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; }
+        .popup-content { background: #1c2533; padding: 25px; border-radius: 15px; width: 95%; max-width: 420px; border: 1px solid #ff3e3e; text-align: center; max-height: 90vh; overflow-y: auto; }
+        .popup-content input { width: 100%; padding: 14px; margin: 8px 0; border-radius: 8px; border: 1px solid #2a3341; background: #0b0f15; color: #fff; }
+        .btn-confirm { width: 100%; background: #ff3e3e; color: white; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
         .cart-summary { background: #0b0f15; border-radius: 8px; padding: 12px; margin: 15px 0; text-align: left; border: 1px solid #2a3341; }
         .cart-item-line { display: flex; justify-content: space-between; align-items: center; font-size: 14px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #2a3341; }
-        .cart-item-line:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .item-info-left { display: flex; align-items: center; gap: 8px; max-width: 70%; }
-        .btn-remove { background: none; border: none; color: #ff4d4d; font-size: 14px; cursor: pointer; padding: 2px 5px; }
-        .btn-remove:hover { color: #ff0000; transform: scale(1.2); }
-        
-        /* HỘP QUÀ TẶNG TRONG POPUP */
-        .gift-box { background: #123824; border: 1px dashed #00ff88; color: #00ff88; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-
-        .cart-total-line { display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; color: #00ff88; margin-top: 10px; padding-top: 5px; border-top: 1px solid #2a3341; }
-
-        /* KHUNG VIETQR */
+        .gift-box { background: #123824; border: 1px dashed #00ff88; color: #00ff88; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-top: 10px; }
+        .cart-total-line { display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; color: #00ff88; margin-top: 10px; }
         .qr-container { display: none; text-align: center; margin-top: 15px; background: #fff; padding: 15px; border-radius: 10px; color: #333; }
         .qr-container img { max-width: 210px; width: 100%; height: auto; display: block; margin: 0 auto 10px; }
-        .qr-container p { margin: 4px 0; font-size: 13px; font-weight: 600; color: #222; }
-        .qr-container .notice { color: #ff3e3e; font-size: 12px; margin-top: 8px; font-style: italic; }
-
-        footer { text-align: center; padding: 50px 20px; font-size: 14px; color: #666; border-top: 1px solid #161c26; margin-top: 30px; }
     </style>
 </head>
 <body>
 <header><h1>KINH THIÊN ĐỘNG ĐẠO</h1></header>
 <main>
-    <div class="promo-banner">
-        🔥 CHƯƠNG TRÌNH GIỚI HẠN ÁP DỤNG TỪ 18/5 CHO ĐẾN KHI NÀO CÓ THÔNG BÁO HẾT : ĐẶT MUA TỪ COMBO 5 CUỐN SÁCH TRỞ LÊN ĐƯỢC TẶNG NGAY 1 CÂY CẢNH NHỎ (SHIP TẬN NƠI)!.
-    </div>
-
+    <div class="promo-banner">🔥 CHƯƠNG TRÌNH: ĐẶT MUA TỪ 5 CUỐN TẶNG 1 CÂY CẢNH NHỎ!</div>
     <section class="grid">
         <article class="card">
             <div class="thumb" style="background-image:url('kinh-thien.jpg')"></div>
@@ -86,7 +60,7 @@
                 <h2 class="title">Kinh Thiên</h2>
                 <div class="author">Kinh Thiên Động Đạo</div>
                 <div class="price"><del>400.000đ</del> → <strong>299.000đ</strong></div>
-                <p class="desc"> Cuốn sách là một hệ thống tư tưởng thực dụng, gai góc, được thiết kế để đập tan những ảo tưởng nhận thức thông thường và buộc độc giả phải đối diện trực diện với sự tàn khốc của nhân tính.  Tác giả bác bỏ tư duy sống theo cảm xúc hay cam chịu, thay vào đó hướng dẫn người đọc sử dụng lăng kính lợi ích và logic để làm chủ cục diện và định đoạt số phận.  Nội dung nhấn mạnh vào việc tái lập trình bộ não thông qua các phương pháp như "tối ưu hóa sự chú ý" và rèn luyện "ý chí tuyệt đối" để thoát khỏi vòng lặp sinh tồn của kẻ yếu.  Đây không phải là tài liệu dành cho người tìm kiếm sự an ủi, mà dành cho những ai dám chấp nhận tổn thương để phá vỡ giới hạn cũ, từ đó vươn lên nắm quyền kiểm soát thực tại.  .</p>
+                <p class="desc" onclick="this.classList.toggle('full')">Cuốn sách là một hệ thống tư tưởng thực dụng, gai góc, được thiết kế để đập tan những ảo tưởng nhận thức thông thường và buộc độc giả phải đối diện trực diện với sự tàn khốc của nhân tính. Tác giả bác bỏ tư duy sống theo cảm xúc hay cam chịu, thay vào đó hướng dẫn người đọc sử dụng lăng kính lợi ích và logic để làm chủ cục diện và định đoạt số phận. Nội dung nhấn mạnh vào việc tái lập trình bộ não thông qua các phương pháp như "tối ưu hóa sự chú ý" và rèn luyện "ý chí tuyệt đối" để thoát khỏi vòng lặp sinh tồn của kẻ yếu. Đây không phải là tài liệu dành cho người tìm kiếm sự an ủi, mà dành cho những ai dám chấp nhận tổn thương để phá vỡ giới hạn cũ, từ đó vươn lên nắm quyền kiểm soát thực tại.</p>
                 <div class="actions">
                     <div class="btn-group">
                         <a class="btn read" href="doc-thu.html?sach=kinh-thien">📖 Đọc thử</a>
@@ -96,305 +70,8 @@
                 </div>
             </div>
         </article>
+        </section>
 
-        <article class="card">
-            <div class="thumb" style="background-image:url('images/tuyet-mat-nhan-tinh.jpg')"></div>
-            <div class="info">
-                <h2 class="title">Tuyệt Mật Nhân Tính</h2>
-                <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>150.000đ</del> → <strong>120.000đ</strong></div>
-                <p class="desc">Cuốn sách "Tuyệt Mật Nhân Tính" là một tài liệu mang màu sắc thực dụng, tập trung khai thác góc nhìn "Pháp gia" về bản chất con người với tư duy đề cao lợi ích và mưu kế trong các mối quan hệ xã hội. Thay vì đi theo những giáo điều đạo đức truyền thống, tác giả hướng dẫn người đọc cách nhìn thấu các lớp mặt nạ của lòng người, từ đó xây dựng tư duy "tâm địa Bồ Tát, thủ đoạn Ma Vương" để sinh tồn và đạt được mục đích. Nội dung sách mang tính chất gây sốc với nhiều quan điểm tàn khốc, xem sự ích kỷ là gốc rễ của hành vi con người và khuyến khích người đọc phải biết từ chối, thiết lập giới hạn để tránh trở thành nạn nhân trong chuỗi thức ăn xã hội. Đây là cuốn sách phù hợp cho những ai muốn tìm hiểu về tâm lý học hành vi theo hướng thực dụng, sắc bén, dù phong cách viết có thể gây tranh cãi vì sự gai góc và thực tế trần trụi. Tuy nhiên, người đọc cần có tư duy phản biện vững vàng để áp dụng các kiến thức này một cách cân bằng và đúng đắn.</p>
-                <div class="actions">
-                    <div class="btn-group">
-                        <a class="btn read" href="doc-thu.html?sach=tuyet-mat-nhan-tinh">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Tuyệt Mật Nhân Tính', 120000)">🛒 + Giỏ</button>
-                    </div>
-                    <button class="btn buy" onclick="buyNow('Tuyệt Mật Nhân Tính', 120000)">⚡ Mua Ngay</button>
-                </div>
-            </div>
-        </article>
-
-        <article class="card">
-            <div class="thumb" style="background-image:url('images/nhan-tinh-den-trang.jpg')"></div>
-            <div class="info">
-                <h2 class="title">Nhân Tính Đen Trắng</h2>
-                <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>150.000đ</del> → <strong>120.000đ</strong></div>
-                <p class="desc">Cuốn sách này là tài liệu nội bộ tập trung vào việc bóc trần những mặt tối của nhân tính, từ đó hướng dẫn người đọc tu luyện tư duy "Lòng Lang Dạ Phật" để tồn tại và phát triển trong cuộc chiến sinh tồn khốc liệt.  Tác giả bác bỏ tư duy "nhân tính bản thiện" và các lý thuyết thành công học sáo rỗng, đồng thời khẳng định thế giới này vận hành dựa trên thực lực và lợi ích, nơi kẻ mạnh điều khiển kẻ yếu.  Nội dung sách cung cấp các "bí thuật" và "tâm pháp" để thấu hiểu lòng người, nhìn thấu các âm mưu trong kinh doanh và tình trường, giúp người đọc thoát khỏi vị thế "đồ chơi" để trở thành người làm chủ cuộc chơi.  Đây không phải là sách dành cho người tìm kiếm sự an ủi hay đạo lý sáo rỗng, mà là cẩm nang dành cho những ai muốn đập tan ảo tưởng để leo lên đỉnh cao chuỗi thức ăn thông qua việc sử dụng thủ đoạn và nhận thức sâu sắc về bản chất con người.  </p>
-                <div class="actions">
-                    <div class="btn-group">
-                        <a class="btn read" href="doc-thu.html?sach=nhan-tinh-den-trang">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Nhân Tính Đen Trắng', 120000)">🛒 + Giỏ</button>
-                    </div>
-                    <button class="btn buy" onclick="buyNow('Nhân Tính Đen Trắng', 120000)">⚡ Mua Ngay</button>
-                </div>
-            </div>
-        </article>
-
-        <article class="card">
-            <div class="thumb" style="background-image:url('images/tu-duy-sau-sac.jpg')"></div>
-            <div class="info">
-                <h2 class="title">Tư Duy Sâu Sắc</h2>
-                <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>230.000đ</del> → <strong>180.000đ</strong></div>
-                <p class="desc">Cuốn sách mang đến những góc nhìn thực tế và đôi khi gai góc về bản chất con người, các mối quan hệ xã hội, và các quy luật ẩn sau sự thành công hay thất bại về tài chính. Tác giả nhấn mạnh tầm quan trọng của việc thấu hiểu nhân tính, biết cách đặt ra ranh giới, và bảo vệ năng lượng cá nhân thay vì mù quáng chạy theo những tiêu chuẩn đạo đức xã hội thường gây cản trở sự phát triển. Thông qua các phân tích về sự tương tác giữa kẻ mạnh và kẻ yếu, cuốn sách hướng dẫn người đọc cách tư duy thực tế, quyết đoán trong các lựa chọn và xây dựng các mối quan hệ chất lượng dựa trên lợi ích và giá trị trao đổi. Đây là một cuốn cẩm nang tư duy dành cho những ai muốn thức tỉnh, thay đổi vận mệnh và xây dựng vị thế vững chắc trong một xã hội đầy cạnh tranh và biến động.</p>
-                <div class="actions">
-                    <div class="btn-group">
-                        <a class="btn read" href="doc-thu.html?sach=tu-duy-sau-sac">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Tư Duy Sâu Sắc', 180000)">🛒 + Giỏ</button>
-                    </div>
-                    <button class="btn buy" onclick="buyNow('Tư Duy Sâu Sắc', 180000)">⚡ Mua Ngay</button>
-                </div>
-            </div>
-        </article>
-
-        <article class="card">
-            <div class="thumb" style="background-image:url('images/thien-co-38-cuc.jpg')"></div>
-            <div class="info">
-                <h2 class="title">Thiên Cơ 38 Cục</h2>
-                <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>200.000đ</del> → <strong>150.000đ</strong></div>
-                <p class="desc">Cuốn sách hệ thống hóa 38 mưu kế chiến lược (gọi là "Thiên Cơ Cục") được đúc kết từ lịch sử, kinh tế và nhân sinh quan nhằm mục đích nâng cao nhận thức và tư duy trong xã hội.  Nội dung tác phẩm đi sâu phân tích các thủ đoạn kinh doanh, chính trị và thao túng tâm lý phức tạp, đồng thời cảnh báo người đọc về những cạm bẫy tinh vi tồn tại trong đời sống hiện đại.  Tác giả sử dụng các điển tích cổ xưa như chiến lược của Gia Cát Lượng hay câu chuyện của người Do Thái để minh họa cho các nguyên tắc lập cục, từ đó giúp người đọc nhận diện và phòng tránh các âm mưu lừa đảo.  Thông qua việc giải mã các "cục" như Ám Tuyến Xuyên Châu hay Đả Ngư Sát Gia, cuốn sách nhấn mạnh triết lý "kiến tử bất cứu, kiến lộ bất tẩu" nhằm rèn luyện bản lĩnh và khả năng tự chủ của mỗi cá nhân.  </p>
-                <div class="actions">
-                    <div class="btn-group">
-                        <a class="btn read" href="doc-thu.html?sach=thien-co-38-cuc">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Thiên Cơ 38 Cục', 150000)">🛒 + Giỏ</button>
-                    </div>
-                    <button class="btn buy" onclick="buyNow('Thiên Cơ 38 Cục', 150000)">⚡ Mua Ngay</button>
-                </div>
-            </div>
-        </article>
-
-        <article class="card">
-            <div class="thumb" style="background-image:url('images/logic-nguoi-ngheo.jpg')"></div>
-            <div class="info">
-                <h2 class="title">Logic Người Nghèo</h2>
-                <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>200.000đ</del> → <strong>130.000đ</strong></div>
-                <p class="desc">Cuốn sách là một nỗ lực chân thành nhằm thấu hiểu logic, suy nghĩ và những hành động ẩn sâu trong cuộc sống của người nghèo, với mục tiêu giúp họ thay đổi tư duy để thoát nghèo bền vững. Tác giả không chỉ trích hay phán xét mà phân tích thực trạng tư duy đói khát, tầm nhìn hạn hẹp và những cạm bẫy xã hội khiến người nghèo mãi luẩn quẩn trong vòng xoáy khó khăn. Thông qua việc nhìn nhận lại vai trò của bản thân, quản lý tài chính và rèn luyện phẩm chất, sách hướng đến việc khơi dậy niềm tin và ý chí để người nghèo nắm bắt cơ hội vươn lên. Đây được coi là người bạn đồng hành, cung cấp góc nhìn thực tế về hành trình làm giàu gian nan nhưng đầy hy vọng cho những ai khao khát xây dựng một cuộc sống tốt đẹp hơn.</p>
-                <div class="actions">
-                    <div class="btn-group">
-                        <a class="btn read" href="doc-thu.html?sach=logic-nguoi-ngheo">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Logic Người Nghèo', 130000)">🛒 + Giỏ</button>
-                    </div>
-                    <button class="btn buy" onclick="buyNow('Logic Người Nghèo', 130000)">⚡ Mua Ngay</button>
-                </div>
-            </div>
-        </article>
-
-        <article class="card">
-            <div class="thumb" style="background-image:url('images/kiem-dai.jpg')"></div>
-            <div class="info">
-                <h2 class="title">Kiếm Đại</h2>
-                <div class="author">Xuyên Thấu Nhân Tính</div>
-                <div class="price"><del>150.000đ</del> → <strong>120.000đ</strong></div>
-                <p class="desc">Cuốn sách là tập hợp các bài viết tổng hợp hệ thống lý thuyết của Kiếm Đại, mang đến cái nhìn sâu sắc và trực diện về bản chất của xã hội, nhân tính và các quy luật trong cuộc sống. Tác phẩm phản ánh tư duy phản biện về nhiều khía cạnh từ chính trị, kinh tế, giáo dục cho đến những vấn đề đời thường như hôn nhân, gia đình và cách ứng xử trong xã hội hiện đại. Thông qua lăng kính của Kiếm Đại, cuốn sách vạch trần những mặt tối, sự giả dối và những nghịch lý của xã hội đương thời mà người bình thường thường bỏ qua hoặc bị che mắt. Đây không chỉ là đúc kết kinh nghiệm mà còn là lời nhắc nhở người đọc phải biết nhìn thấu sự việc, rèn luyện tư duy độc lập và tự nắm giữ vận mệnh của chính mình.</p>
-                <div class="actions">
-                    <div class="btn-group">
-                        <a class="btn read" href="doc-thu.html?sach=kiem-dai">📖 Đọc thử</a>
-                        <button class="btn add-cart" onclick="addToCart('Kiếm Đại', 120000)">🛒 + Giỏ</button>
-                    </div>
-                    <button class="btn buy" onclick="buyNow('Kiếm Đại', 120000)">⚡ Mua Ngay</button>
-                </div>
-            </div>
-        </article>
-    </section>
-
-    <section class="support-box">
-        <h3>💡 Gợi ý dành cho Độc giả</h3>
-        <p>• Bạn có thể bấm nút <strong>"🛒 + Giỏ"</strong> để gom nhiều cuốn sách khác nhau vào đơn hàng trước khi tiến hành thanh toán gộp một lần như Shopee.</p>
-        <p>• <strong>Ưu đãi đặc biệt:</strong> Khi giỏ hàng đạt từ 3 cuốn sách bất kỳ trở lên, bạn sẽ nhận được 1 cây cảnh nhỏ xinh xắn kèm sách ship tận nhà hoàn toàn miễn phí!</p>
-        <p>• Sau khi điền thông tin, hệ thống hiển thị mã VietQR tự động điền sẵn tổng số tiền tất cả các cuốn sách bạn chọn.</p>
-        <p>• Hotline/Zalo hỗ trợ: <a href="tel:0397885118"><strong>0397885118</strong></a>.</p>
-    </section>
-</main>
-
-<div class="floating-cart" onclick="openCartPopup()">
-    🛒
-    <div class="cart-count" id="cartCount">0</div>
-</div>
-
-<div id="orderPopup">
-    <div class="popup-content">
-        <h3 id="popupTitle" style="margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px;">Thông Tin Đơn Hàng</h3>
-        
-        <div class="cart-summary" id="cartSummaryList">
-            </div>
-        
-        <div id="popupForm">
-            <input type="text" id="custName" placeholder="Tên của bạn..." required>
-            <input type="tel" id="custPhone" placeholder="Số điện thoại Zalo..." required>
-            <input type="email" id="custEmail" placeholder="Địa chỉ Email của bạn..." required>
-            <input type="text" id="custAddress" placeholder="Địa chỉ nhận cây cảnh tặng (Nếu mua từ 3 cuốn)...">
-            <button class="btn-confirm" onclick="processCheckout()">Xác Nhận Đặt Mua</button>
-            <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline; display:block; width:100%;">Quay lại chọn tiếp</button>
-        </div>
-
-        <div id="qrSection" class="qr-container">
-            <p style="color:#ff3e3e; font-size:15px; margin-bottom:8px; font-weight: bold;">MÃ QUÉT THANH TOÁN GỘP</p>
-            <img id="vietQrImage" src="" alt="Mã VietQR Thanh Toán Tổng">
-            <p id="qrInfoAmount"></p>
-            <p id="qrInfoContent" style="font-size:11px; color:#555; background:#f4f5f7; padding:4px; border-radius:4px; word-break:break-all;"></p>
-            <p class="notice">Đang mở trình duyệt chuyển tiếp sang Messenger...</p>
-        </div>
-    </div>
-</div>
-
-<footer>© 2026 Trí Lộ Trường Tồn — Kiến tạo tư duy kẻ cầm lái.</footer>
-
-<script>
-    let cart = [];
-    
-    // --- THÔNG TIN TÀI KHOẢN NGÂN HÀNG CHÍNH CHỦ CỦA BẠN ---
-    const NGAN_HANG = "vietcombank"; 
-    const STK       = "1054523832";  
-    const TEN_CTK   = "VANG A SONG"; 
-    // -----------------------------------------------------------------
-
-    function formatMoney(num) {
-        return num.toLocaleString('vi-VN') + "đ";
-    }
-
-    // 1. Thêm sản phẩm vào giỏ hàng
-    function addToCart(bookName, price) {
-        const existing = cart.find(item => item.name === bookName);
-        if (!existing) {
-            cart.push({ name: bookName, price: price });
-            alert(`Đã thêm "${bookName}" vào giỏ hàng!`);
-            updateCartCount();
-        } else {
-            alert("Cuốn sách này đã có sẵn trong giỏ hàng của bạn rồi!");
-        }
-    }
-
-    function updateCartCount() {
-        document.getElementById('cartCount').innerText = cart.length;
-    }
-
-    // 2. Chức năng Mua ngay
-    function buyNow(bookName, price) {
-        cart = [{ name: bookName, price: price }];
-        updateCartCount();
-        openCartPopup();
-    }
-
-    // 3. Xóa sản phẩm khỏi giỏ hàng
-    function removeFromCart(index) {
-        cart.splice(index, 1);
-        updateCartCount();
-        
-        if (cart.length === 0) {
-            alert("Giỏ hàng của bạn đã trống!");
-            closePopup();
-        } else {
-            renderCartList();
-        }
-    }
-
-    // Hàm vẽ danh sách sách, kiểm tra điều kiện tặng quà (>=3 cuốn)
-    function renderCartList() {
-        let html = "";
-        let total = 0;
-        
-        cart.forEach((item, index) => {
-            html += `<div class="cart-item-line">
-                        <div class="item-info-left">
-                            <button class="btn-remove" onclick="removeFromCart(${index})" title="Xóa cuốn này">❌</button>
-                            <span>${index + 1}. ${item.name}</span>
-                        </div>
-                        <strong>${formatMoney(item.price)}</strong>
-                     </div>`;
-            total += item.price;
-        });
-
-        // Báo tặng cây cảnh nếu chọn từ 3 cuốn trở lên
-        if (cart.length >= 3) {
-            html += `<div class="gift-box">🎉 CHÚC MỪNG: Bạn được tặng 1 cây cảnh nhỏ + Ship tận nơi!</div>`;
-            document.getElementById('custAddress').style.display = "block";
-            document.getElementById('custAddress').setAttribute("required", "true");
-        } else {
-            document.getElementById('custAddress').style.display = "none";
-            document.getElementById('custAddress').removeAttribute("required");
-        }
-        
-        html += `<div class="cart-total-line">
-                    <span>TỔNG THANH TOÁN:</span>
-                    <span>${formatMoney(total)}</span>
-                 </div>`;
-                 
-        document.getElementById('cartSummaryList').innerHTML = html;
-    }
-
-    // 4. Mở popup hiển thị tổng thể đơn hàng
-    function openCartPopup() {
-        if (cart.length === 0) {
-            alert("Giỏ hàng của bạn đang trống! Vui lòng chọn sách trước.");
-            return;
-        }
-
-        renderCartList();
-                 
-        document.getElementById('popupForm').style.display = 'block';
-        document.getElementById('qrSection').style.display = 'none';
-        document.getElementById('orderPopup').style.display = 'flex';
-    }
-    
-    function closePopup() { 
-        document.getElementById('orderPopup').style.display = 'none'; 
-    }
-    
-    // 5. Xử lý tạo cổng QR gộp và kết nối Messenger
-    function processCheckout() {
-        const name = document.getElementById('custName').value.trim(); 
-        const phone = document.getElementById('custPhone').value.trim();
-        const email = document.getElementById('custEmail').value.trim();
-        const address = document.getElementById('custAddress').value.trim();
-        
-        if(!name || !phone || !email) { alert("Vui lòng điền đủ thông tin để nhận sách!"); return; }
-        if(cart.length >= 3 && !address) { alert("Bạn đủ điều kiện nhận cây cảnh, vui lòng điền Địa chỉ nhận quà!"); return; }
-        
-        let totalAmount = 0;
-        let bookNamesArray = [];
-        
-        cart.forEach(item => {
-            totalAmount += item.price;
-            let shortName = item.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/[^a-zA-Z0-9]/g, "");
-            bookNamesArray.push(shortName);
-        });
-
-        const transferContent = `${phone} mua ${bookNamesArray.join(" ")}`.substring(0, 50);
-
-        // Gọi API sinh mã VietQR gộp
-        const vietQrUrl = `https://img.vietqr.io/image/${NGAN_HANG}-${STK}-compact2.png?amount=${totalAmount}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(TEN_CTK)}`;
-        
-        document.getElementById('vietQrImage').src = vietQrUrl;
-        document.getElementById('qrInfoAmount').innerHTML = `Tổng số tiền: <strong style="color:#00ff88;font-size:18px;">${formatMoney(totalAmount)}</strong>`;
-        document.getElementById('qrInfoContent').innerHTML = `Nội dung CK bắt buộc: <strong>${transferContent}</strong>`;
-        
-        document.getElementById('popupForm').style.display = 'none';
-        document.getElementById('qrSection').style.display = 'block';
-
-        let listBooksText = "";
-        cart.forEach((item, index) => {
-            listBooksText += `📖 ${index + 1}. ${item.name} (${formatMoney(item.price)})%0A`;
-        });
-
-        // Chuỗi văn bản báo Quà tặng nếu thỏa mãn điều kiện
-        let giftText = "KHÔNG CÓ (Chưa đủ điều kiện mua 3 cuốn)";
-        if(cart.length >= 3) {
-            giftText = `🎁 ĐỦ ĐIỀU KIỆN TẶNG 1 CÂY CẢNH NHỎ!%0A📍 Địa chỉ nhận quà: ${address}`;
-        }
-
-        const message = `ĐƠN HÀNG MỚI WEB (GIỎ HÀNG MULTI):%0A------------------%0A${listBooksText}💰 Tổng thanh toán: ${formatMoney(totalAmount)}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A🎁 QUÀ TẶNG KÈM: ${giftText}%0A------------------%0A%0AĐã ghi nhận yêu cầu.%0AĐể nhận file ebooks hoàn chỉnh + Quà tặng (nếu có), b vui lòng thanh toán theo mã QR tổng hiển thị trên màn hình.%0A%0A🏦 Ngân hàng: ${NGAN_HANG.toUpperCase()}%0A💳 Số tài khoản: ${STK}%0A👤 Chủ tài khoản: ${TEN_CTK}%0A💰 Tổng tiền: ${formatMoney(totalAmount)}%0A📝 Nội dung CK: ${transferContent}%0A%0AHệ thống sẽ đối soát đơn hàng và gửi file qua Messenger/Email cho b ngay lập tức!`;
-
-        // Đợi 60 giây (1 phút) cho khách kịp quét/chụp màn hình rồi mở Messenger tự động
-        setTimeout(() => {
-            window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
-            closePopup();
-            cart = []; 
-            updateCartCount();
-        }, 60000);
-    }
-</script>
+    </main>
 </body>
 </html>
