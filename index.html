@@ -50,10 +50,6 @@
         .btn-remove:hover { color: #ff0000; transform: scale(1.2); }
         .gift-box { background: #123824; border: 1px dashed #00ff88; color: #00ff88; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .cart-total-line { display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; color: #00ff88; margin-top: 10px; padding-top: 5px; border-top: 1px solid #2a3341; }
-        .qr-container { display: none; text-align: center; margin-top: 15px; background: #fff; padding: 15px; border-radius: 10px; color: #333; }
-        .qr-container img { max-width: 210px; width: 100%; height: auto; display: block; margin: 0 auto 10px; }
-        .qr-container p { margin: 4px 0; font-size: 13px; font-weight: 600; color: #222; }
-        .qr-container .notice { color: #ff3e3e; font-size: 12px; margin-top: 8px; font-style: italic; }
         footer { text-align: center; padding: 50px 20px; font-size: 14px; color: #666; border-top: 1px solid #161c26; margin-top: 30px; }
     </style>
 </head>
@@ -67,9 +63,7 @@
 
         <!-- COMBO 1 -->
         <article class="card">
-            <div class="thumb" style="background-color:#222;">
-                <!-- Bạn có thể thay bằng ảnh combo phù hợp -->
-            </div>
+            <div class="thumb" style="background-color:#222;"></div>
             <div class="info">
                 <h2 class="title">COMBO 1: Kinh Thiên + Tuyệt Mật Nhân Tính + Nhân Tính Đen Trắng + Thiên Cơ 38 Cục</h2>
                 <div class="author">COMBO ƯU ĐÃI ĐẶC BIỆT</div>
@@ -90,9 +84,7 @@
 
         <!-- COMBO 2 -->
         <article class="card">
-            <div class="thumb" style="background-color:#222;">
-                <!-- Bạn có thể thay bằng ảnh combo phù hợp -->
-            </div>
+            <div class="thumb" style="background-color:#222;"></div>
             <div class="info">
                 <h2 class="title">COMBO 2: Full Bộ 7 Cuốn</h2>
                 <div class="author">COMBO TOÀN THƯ</div>
@@ -111,7 +103,7 @@
             </div>
         </article>
 
-        <!-- Sách lẻ bên dưới như cũ, chỉ sửa lỗi thiếu dấu > ở dòng author Kinh Thiên -->
+        <!-- SÁCH LẺ -->
         <article class="card">
             <div class="thumb" style="background-image:url('kinh-thien.jpg')"></div>
             <div class="info">
@@ -228,8 +220,8 @@
     <section class="support-box">
         <h3>💡 Gợi ý dành cho Độc giả</h3>
         <p>• Bạn có thể bấm nút <strong>"🛒 + Giỏ"</strong> để gom nhiều cuốn sách khác nhau vào đơn hàng trước khi tiến hành thanh toán gộp một lần như Shopee.</p>
-        <p>• <strong>Ưu đãi đặc biệt:</strong> Khi giỏ hàng đạt từ 5 cuốn sách bất kỳ trở lên, bạn sẽ nhận được 1 cây cảnh nhỏ  ship tận nhà hoàn toàn miễn phí!(khách trả tiền ship!)</p>
-        <p>• Sau khi điền thông tin, hệ thống hiển thị mã VietQR tự động điền sẵn tổng số tiền tất cả các cuốn sách bạn chọn.</p>
+        <p>• <strong>Ưu đãi đặc biệt:</strong> Khi giỏ hàng đạt từ 5 cuốn sách bất kỳ trở lên, bạn sẽ nhận được 1 cây cảnh nhỏ ship tận nhà hoàn toàn miễn phí!(khách trả tiền ship!)</p>
+        <p>• Sau khi điền thông tin và bấm "Xác Nhận Đặt Mua", hệ thống sẽ tự động chuyển toàn bộ đơn hàng của bạn sang Messenger để hoàn tất.</p>
         <p>• Hotline/Zalo hỗ trợ: <a href="tel:0397885118"><strong>0397885118</strong></a>.</p>
     </section>
 </main>
@@ -249,26 +241,16 @@
             <button class="btn-confirm" onclick="processCheckout()">Xác Nhận Đặt Mua</button>
             <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline; display:block; width:100%;">Quay lại chọn tiếp</button>
         </div>
-        <div id="qrSection" class="qr-container">
-            <p style="color:#ff3e3e; font-size:15px; margin-bottom:8px; font-weight: bold;">MÃ QUÉT THANH TOÁN GỘP</p>
-            <img id="vietQrImage" src="" alt="Mã VietQR Thanh Toán Tổng">
-            <p id="qrInfoAmount"></p>
-            <p id="qrInfoContent" style="font-size:11px; color:#555; background:#f4f5f7; padding:4px; border-radius:4px; word-break:break-all;"></p>
-            <p class="notice">Đang mở trình duyệt chuyển tiếp sang Messenger...</p>
-        </div>
     </div>
 </div>
 <footer>© 2026 Trí Lộ Trường Tồn — Kiến tạo tư duy kẻ cầm lái.</footer>
 <script>
     let cart = [];
-    // --- THÔNG TIN TÀI KHOẢN NGÂN HÀNG CHÍNH CHỦ CỦA BẠN ---
-    const NGAN_HANG = "vietcombank"; 
-    const STK       = "1054523832";  
-    const TEN_CTK   = "VANG A SONG"; 
-    // -----------------------------------------------------------------
+    
     function formatMoney(num) {
         return num.toLocaleString('vi-VN') + "đ";
     }
+    
     // 1. Thêm sản phẩm vào giỏ hàng
     function addToCart(bookName, price) {
         const existing = cart.find(item => item.name === bookName);
@@ -280,15 +262,18 @@
             alert("Cuốn sách này đã có sẵn trong giỏ hàng của bạn rồi!");
         }
     }
+    
     function updateCartCount() {
         document.getElementById('cartCount').innerText = cart.length;
     }
+    
     // 2. Chức năng Mua ngay
     function buyNow(bookName, price) {
         cart = [{ name: bookName, price: price }];
         updateCartCount();
         openCartPopup();
     }
+    
     // 3. Xóa sản phẩm khỏi giỏ hàng
     function removeFromCart(index) {
         cart.splice(index, 1);
@@ -300,6 +285,7 @@
             renderCartList();
         }
     }
+    
     // Hàm vẽ danh sách sách, kiểm tra điều kiện tặng quà (>=3 cuốn)
     function renderCartList() {
         let html = "";
@@ -314,7 +300,7 @@
                      </div>`;
             total += item.price;
         });
-        // Báo tặng cây cảnh nếu chọn từ 3 cuốn trở lên
+        
         if (cart.length >= 3) {
             html += `<div class="gift-box">🎉 CHÚC MỪNG: Bạn được tặng 1 cây cảnh nhỏ + Ship tận nơi!</div>`;
             document.getElementById('custAddress').style.display = "block";
@@ -323,12 +309,14 @@
             document.getElementById('custAddress').style.display = "none";
             document.getElementById('custAddress').removeAttribute("required");
         }
+        
         html += `<div class="cart-total-line">
                     <span>TỔNG THANH TOÁN:</span>
                     <span>${formatMoney(total)}</span>
                  </div>`;
         document.getElementById('cartSummaryList').innerHTML = html;
     }
+    
     // 4. Mở popup hiển thị tổng thể đơn hàng
     function openCartPopup() {
         if (cart.length === 0) {
@@ -337,52 +325,45 @@
         }
         renderCartList();
         document.getElementById('popupForm').style.display = 'block';
-        document.getElementById('qrSection').style.display = 'none';
         document.getElementById('orderPopup').style.display = 'flex';
     }
+    
     function closePopup() { 
         document.getElementById('orderPopup').style.display = 'none'; 
     }
-    // 5. Xử lý tạo cổng QR gộp và kết nối Messenger
+    
+    // 5. Xử lý gửi thẳng thông tin qua Messenger
     function processCheckout() {
         const name = document.getElementById('custName').value.trim(); 
         const phone = document.getElementById('custPhone').value.trim();
         const email = document.getElementById('custEmail').value.trim();
         const address = document.getElementById('custAddress').value.trim();
+        
         if(!name || !phone || !email) { alert("Vui lòng điền đủ thông tin để nhận sách!"); return; }
         if(cart.length >= 3 && !address) { alert("Bạn đủ điều kiện nhận cây cảnh, vui lòng điền Địa chỉ nhận quà!"); return; }
+        
         let totalAmount = 0;
-        let bookNamesArray = [];
-        cart.forEach(item => {
-            totalAmount += item.price;
-            let shortName = item.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").replace(/[^a-zA-Z0-9]/g, "");
-            bookNamesArray.push(shortName);
-        });
-        const transferContent = `${phone} mua ${bookNamesArray.join(" ")}`.substring(0, 50);
-        // Gọi API sinh mã VietQR gộp
-        const vietQrUrl = `https://img.vietqr.io/image/${NGAN_HANG}-${STK}-compact2.png?amount=${totalAmount}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(TEN_CTK)}`;
-        document.getElementById('vietQrImage').src = vietQrUrl;
-        document.getElementById('qrInfoAmount').innerHTML = `Tổng số tiền: <strong style="color:#00ff88;font-size:18px;">${formatMoney(totalAmount)}</strong>`;
-        document.getElementById('qrInfoContent').innerHTML = `Nội dung CK bắt buộc: <strong>${transferContent}</strong>`;
-        document.getElementById('popupForm').style.display = 'none';
-        document.getElementById('qrSection').style.display = 'block';
         let listBooksText = "";
+        
         cart.forEach((item, index) => {
+            totalAmount += item.price;
             listBooksText += `📖 ${index + 1}. ${item.name} (${formatMoney(item.price)})%0A`;
         });
-        // Chuỗi văn bản báo Quà tặng nếu thỏa mãn điều kiện
+        
         let giftText = "KHÔNG CÓ (Chưa đủ điều kiện mua 3 cuốn)";
         if(cart.length >= 3) {
             giftText = `🎁 ĐỦ ĐIỀU KIỆN TẶNG 1 CÂY CẢNH NHỎ!%0A📍 Địa chỉ nhận quà: ${address}`;
         }
-        const message = `ĐƠN HÀNG MỚI WEB (GIỎ HÀNG MULTI):%0A------------------%0A${listBooksText}💰 Tổng thanh toán: ${formatMoney(totalAmount)}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A🎁 QUÀ TẶNG KÈM: ${giftText}%0A------------------%0A%0AĐã ghi nhận yêu cầu.%0AĐể nhận file ebooks hoàn chỉnh + Quà tặng (nếu có), b vui lòng thanh toán theo mã QR tổng hiển thị trên màn hình.%0A%0A🏦 Ngân hàng: ${NGAN_HANG.toUpperCase()}%0A💳 Số tài khoản: ${STK}%0A👤 Chủ tài khoản: ${TEN_CTK}%0A💰 Tổng tiền: ${formatMoney(totalAmount)}%0A📝 Nội dung CK: ${transferContent}%0A%0AHệ thống sẽ đối soát đơn hàng và gửi file qua Messenger/Email cho b ngay lập tức!`;
-        // Đợi 60 giây (1 phút) cho khách kịp quét/chụp màn hình rồi mở Messenger tự động
-        setTimeout(() => {
-            window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
-            closePopup();
-            cart = []; 
-            updateCartCount();
-        }, 60000);
+        
+        const message = `ĐƠN HÀNG MỚI WEB (GIỎ HÀNG MULTI):%0A------------------%0A${listBooksText}💰 Tổng thanh toán: ${formatMoney(totalAmount)}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A🎁 QUÀ TẶNG KÈM: ${giftText}%0A------------------%0A%0AEm gửi thông tin đơn hàng, nhờ Shop hỗ trợ gửi sách giúp em!`;
+        
+        // Mở thẳng trang Messenger chứa nội dung đơn hàng
+        window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
+        
+        // Đóng popup và làm sạch giỏ hàng
+        closePopup();
+        cart = []; 
+        updateCartCount();
     }
 </script>
 </body>
