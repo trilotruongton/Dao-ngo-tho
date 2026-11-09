@@ -29,8 +29,15 @@
         .btn.add-cart:hover { background: #00cc6e; }
         .btn.buy { background: #ff3e3e; color: #fff; width: 100%; }
         .btn.buy:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 62, 62, 0.5); }
+        
+        /* Nút giỏ hàng nổi */
         .floating-cart { position: fixed; bottom: 30px; right: 30px; background: #ff3e3e; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 20px rgba(255, 62, 62, 0.4); z-index: 999; font-size: 24px; transition: 0.3s; }
         .floating-cart:hover { transform: scale(1.1); }
+        
+        /* Nút Messenger nổi */
+        .floating-messenger { position: fixed; bottom: 100px; right: 30px; background: #0084ff; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 4px 20px rgba(0, 132, 255, 0.4); z-index: 999; font-size: 26px; transition: 0.3s; text-decoration: none; }
+        .floating-messenger:hover { transform: scale(1.1); background: #006dd6; }
+
         .cart-count { position: absolute; top: -5px; right: -5px; background: #00ff88; color: #0b0f15; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #0b0f15; }
         .promo-banner { background: linear-gradient(135deg, #ff3e3e, #b30000); padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 25px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(255, 62, 62, 0.3); border: 1px solid #ff6666; }
         .support-box { background: #161c26; border-left: 4px solid #ff3e3e; padding: 20px; border-radius: 8px; margin-top: 50px; border-top: 1px solid #2a3341; border-right: 1px solid #2a3341; border-bottom: 1px solid #2a3341; }
@@ -48,7 +55,6 @@
         .item-info-left { display: flex; align-items: center; gap: 8px; max-width: 70%; }
         .btn-remove { background: none; border: none; color: #ff4d4d; font-size: 14px; cursor: pointer; padding: 2px 5px; }
         .btn-remove:hover { color: #ff0000; transform: scale(1.2); }
-        .gift-box { background: #123824; border: 1px dashed #00ff88; color: #00ff88; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .cart-total-line { display: flex; justify-content: space-between; font-size: 16px; font-weight: bold; color: #00ff88; margin-top: 10px; padding-top: 5px; border-top: 1px solid #2a3341; }
         footer { text-align: center; padding: 50px 20px; font-size: 14px; color: #666; border-top: 1px solid #161c26; margin-top: 30px; }
     </style>
@@ -56,9 +62,6 @@
 <body>
 <header><h1>KINH THIÊN ĐỘNG ĐẠO</h1></header>
 <main>
-    <div class="promo-banner">
-        🔥 CHƯƠNG TRÌNH ÁP DỤNG TỪ 18/5 CHO ĐẾN KHI NÀO CÓ THÔNG BÁO HẾT : ĐẶT MUA TỪ COMBO 5 CUỐN SÁCH TRỞ LÊN ĐƯỢC TẶNG NGAY 1 CÂY CẢNH NHỎ (SHIP TẬN NƠI NHA)!.
-    </div>
     <section class="grid">
 
         <!-- COMBO 1 -->
@@ -220,15 +223,27 @@
     <section class="support-box">
         <h3>💡 Gợi ý dành cho Độc giả</h3>
         <p>• Bạn có thể bấm nút <strong>"🛒 + Giỏ"</strong> để gom nhiều cuốn sách khác nhau vào đơn hàng trước khi tiến hành thanh toán gộp một lần như Shopee.</p>
-        <p>• <strong>Ưu đãi đặc biệt:</strong> Khi giỏ hàng đạt từ 5 cuốn sách bất kỳ trở lên, bạn sẽ nhận được 1 cây cảnh nhỏ ship tận nhà hoàn toàn miễn phí!(khách trả tiền ship!)</p>
         <p>• Sau khi điền thông tin và bấm "Xác Nhận Đặt Mua", hệ thống sẽ tự động chuyển toàn bộ đơn hàng của bạn sang Messenger để hoàn tất.</p>
         <p>• Hotline/Zalo hỗ trợ: <a href="tel:0397885118"><strong>0397885118</strong></a>.</p>
+        <div style="margin-top: 15px;">
+            <a href="https://m.me/801523696387597" target="_blank" style="display: inline-block; background: #0084ff; color: white; padding: 12px 25px; border-radius: 8px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 15px rgba(0,132,255,0.3); transition: 0.3s;">
+                💬 Nhắn tin trực tiếp qua Messenger với Shop
+            </a>
+        </div>
     </section>
 </main>
-<div class="floating-cart" onclick="openCartPopup()">
+
+<!-- Nút Messenger nổi góc phải màn hình -->
+<a href="https://m.me/801523696387597" target="_blank" class="floating-messenger" title="Nhắn tin với Shop">
+    💬
+</a>
+
+<!-- Nút Giỏ hàng nổi -->
+<div class="floating-cart" onclick="openCartPopup()" title="Xem giỏ hàng">
     🛒
     <div class="cart-count" id="cartCount">0</div>
 </div>
+
 <div id="orderPopup">
     <div class="popup-content">
         <h3 id="popupTitle" style="margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px;">Thông Tin Đơn Hàng</h3>
@@ -237,7 +252,7 @@
             <input type="text" id="custName" placeholder="Tên của bạn..." required>
             <input type="tel" id="custPhone" placeholder="Số điện thoại Zalo..." required>
             <input type="email" id="custEmail" placeholder="Địa chỉ Email của bạn..." required>
-            <input type="text" id="custAddress" placeholder="Địa chỉ nhận cây cảnh tặng (Nếu mua từ 3 cuốn)...">
+            <input type="text" id="custAddress" placeholder="Địa chỉ nhận sách chi tiết..." required>
             <button class="btn-confirm" onclick="processCheckout()">Xác Nhận Đặt Mua</button>
             <button onclick="closePopup()" style="background:none; color:#8892b0; border:none; margin-top:15px; cursor:pointer; text-decoration:underline; display:block; width:100%;">Quay lại chọn tiếp</button>
         </div>
@@ -286,7 +301,7 @@
         }
     }
     
-    // Hàm vẽ danh sách sách, kiểm tra điều kiện tặng quà (>=3 cuốn)
+    // Hàm vẽ danh sách sách trong popup
     function renderCartList() {
         let html = "";
         let total = 0;
@@ -297,18 +312,9 @@
                             <span>${index + 1}. ${item.name}</span>
                         </div>
                         <strong>${formatMoney(item.price)}</strong>
-                     </div>`;
+                   </div>`;
             total += item.price;
         });
-        
-        if (cart.length >= 3) {
-            html += `<div class="gift-box">🎉 CHÚC MỪNG: Bạn được tặng 1 cây cảnh nhỏ + Ship tận nơi!</div>`;
-            document.getElementById('custAddress').style.display = "block";
-            document.getElementById('custAddress').setAttribute("required", "true");
-        } else {
-            document.getElementById('custAddress').style.display = "none";
-            document.getElementById('custAddress').removeAttribute("required");
-        }
         
         html += `<div class="cart-total-line">
                     <span>TỔNG THANH TOÁN:</span>
@@ -339,8 +345,10 @@
         const email = document.getElementById('custEmail').value.trim();
         const address = document.getElementById('custAddress').value.trim();
         
-        if(!name || !phone || !email) { alert("Vui lòng điền đủ thông tin để nhận sách!"); return; }
-        if(cart.length >= 3 && !address) { alert("Bạn đủ điều kiện nhận cây cảnh, vui lòng điền Địa chỉ nhận quà!"); return; }
+        if(!name || !phone || !email || !address) { 
+            alert("Vui lòng điền đầy đủ thông tin nhận hàng!"); 
+            return; 
+        }
         
         let totalAmount = 0;
         let listBooksText = "";
@@ -350,12 +358,7 @@
             listBooksText += `📖 ${index + 1}. ${item.name} (${formatMoney(item.price)})%0A`;
         });
         
-        let giftText = "KHÔNG CÓ (Chưa đủ điều kiện mua 3 cuốn)";
-        if(cart.length >= 3) {
-            giftText = `🎁 ĐỦ ĐIỀU KIỆN TẶNG 1 CÂY CẢNH NHỎ!%0A📍 Địa chỉ nhận quà: ${address}`;
-        }
-        
-        const message = `ĐƠN HÀNG MỚI WEB (GIỎ HÀNG MULTI):%0A------------------%0A${listBooksText}💰 Tổng thanh toán: ${formatMoney(totalAmount)}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A🎁 QUÀ TẶNG KÈM: ${giftText}%0A------------------%0A%0AEm gửi thông tin đơn hàng, nhờ Shop hỗ trợ gửi sách giúp em!`;
+        const message = `ĐƠN HÀNG MỚI WEB:%0A------------------%0A${listBooksText}💰 Tổng thanh toán: ${formatMoney(totalAmount)}%0A👤 Khách: ${name}%0A📞 SĐT: ${phone}%0A📧 Email: ${email}%0A📍 Địa chỉ: ${address}%0A------------------%0A%0AEm gửi thông tin đơn hàng, nhờ Shop hỗ trợ gửi sách giúp em!`;
         
         // Mở thẳng trang Messenger chứa nội dung đơn hàng
         window.open(`https://m.me/801523696387597?text=${message}`, '_blank');
